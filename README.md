@@ -2,26 +2,23 @@
 
 A small java project holding various utility classes to reduce development effort. 
 
-# Target Version
+### Target Version
 
 `0.0.1`
 
-### Markdown
+### Setup
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Add dependency in your `pom.xml`
 
 ```markdown
-Add dependency in yout .pom
 
 <dependency>
 	<groupId>com.common.util</groupId>
 	<artifactId>common-utils</artifactId>
-	<version>0.0.1</version>	
+	<version>${version}</version>	
 </dependency>
 
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Build
 
