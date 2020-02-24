@@ -8,28 +8,28 @@ A small java project holding various utility classes to reduce development effor
 
 ### Setup
 
-1. Clone appropriate version from `Github`
+* Clone appropriate version from `Github`
 
-```
-git clone https://github.com/spranshu1/common-util.git
-```
-2. Build
+	```
+	git clone https://github.com/spranshu1/common-util.git
+	```
+* Build
 
-```markdown
-mvn clean install
-```
+	```markdown
+	mvn clean install
+	```
 
-3. Add dependency in your `pom.xml`
+* Add dependency in your `pom.xml`
 
-```markdown
-
-<dependency>
-	<groupId>com.common.util</groupId>
-	<artifactId>common-utils</artifactId>
-	<version>${version}</version>	
-</dependency>
-
-```
+	```markdown
+	
+	<dependency>
+		<groupId>com.common.util</groupId>
+		<artifactId>common-utils</artifactId>
+		<version>${version}</version>	
+	</dependency>
+	
+	```
 
 ### Support or Contact
 ```
