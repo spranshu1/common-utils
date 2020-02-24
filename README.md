@@ -8,7 +8,18 @@ A small java project holding various utility classes to reduce development effor
 
 ### Setup
 
-Add dependency in your `pom.xml`
+1. Clone appropriate version from `Github`
+
+```
+git clone https://github.com/spranshu1/common-util.git
+```
+2. Build
+
+```markdown
+mvn clean install
+```
+
+3. Add dependency in your `pom.xml`
 
 ```markdown
 
@@ -18,12 +29,6 @@ Add dependency in your `pom.xml`
 	<version>${version}</version>	
 </dependency>
 
-```
-
-### Build
-
-```markdown
-mvn clean install
 ```
 
 ### Support or Contact
