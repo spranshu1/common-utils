@@ -1,13 +1,4 @@
 /**
- * These materials are confidential and proprietary to Intellect Design Arena Ltd. and no part of these
- * materials should be reproduced, published, transmitted or distributed in any form or by any means,
- * electronic, mechanical, photocopying, recording or otherwise, or stored in any information storage or
- * retrieval system of any nature nor should the materials be disclosed to third parties or used in any
- * other manner for which this is not authorized, without the prior express written authorization of
- * Intellect Design Arena Ltd.
- *
- * Copyright 2017 Intellect Design Arena Limited. All rights reserved.
- *
  * @author pranshu.shrivastava
  * @date Feb 24, 2020
  */
@@ -18,9 +9,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.common.util.string.StringUtil;
+import com.common.util.string.StringUtils;
 
-public class DateUtil {
+public class DateUtils {
 	
 	/**
 	 * Checks if firstDate date is equal to or greater than secondDate.
@@ -72,7 +63,7 @@ public class DateUtil {
 	 */
 	public static LocalDateTime convertStringToDate(final String dateTime, final String format) {
 		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-		return (StringUtil.strFieldIsEmpty(dateTime)) ? null : LocalDateTime.parse(dateTime, formatter);
+		return (StringUtils.strFieldIsEmpty(dateTime)) ? null : LocalDateTime.parse(dateTime, formatter);
 	}
 
 

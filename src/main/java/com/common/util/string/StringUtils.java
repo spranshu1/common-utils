@@ -6,7 +6,7 @@ package com.common.util.string;
 
 import java.util.List;
 
-public class StringUtil {
+public class StringUtils {
 	
 	/**
 	 * Checks if the given String field is null or empty (or contains only spaces).
