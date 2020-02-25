@@ -7,11 +7,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Common Utility </name>
 	<description>Common utility and helper methods</description>
-	
+
 	<properties>
 		<commons-logginv.version>1.2</commons-logginv.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<jackson.version>2.9.10.1</jackson.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -30,7 +31,17 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+
+
 	<build>
 		<plugins>
 			<plugin>

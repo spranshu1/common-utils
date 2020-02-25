@@ -32,6 +32,24 @@ public class StringUtils {
 		return !strFieldIsEmpty(field);
 	}
 	
+	/**
+	 * Check that the given {@code CharSequence} is neither {@code null} nor
+	 * of length 0.
+	 * <p>Note: this method returns {@code true} for a {@code CharSequence}
+	 * that purely consists of whitespace.
+	 * <p><pre class="code">
+	 * StringUtils.hasLength(null) = false
+	 * StringUtils.hasLength("") = false
+	 * StringUtils.hasLength(" ") = true
+	 * StringUtils.hasLength("Hello") = true
+	 * </pre>
+	 * @param str the {@code CharSequence} to check (may be {@code null})
+	 * @return {@code true} if the {@code CharSequence} is not {@code null} and has length
+	 */
+	public static boolean hasLength(CharSequence str) {
+		return (str != null && str.length() > 0);
+	}
+	
 	
 	/**
 	 * Checks if the given String params are not null/empty and match with each other (Case sensitive).
@@ -85,6 +103,13 @@ public class StringUtils {
 		return false;
 	}
 
+	public static boolean endsWithSeparator(String msg) {
+		return (msg.endsWith(":") || msg.endsWith(";") || msg.endsWith(",") || msg.endsWith("."));
+	}
+
+	public static String messageWithTypeName(String msg, Object typeName) {
+		return msg + (msg.endsWith(" ") ? "" : ": ") + typeName;
+	}
 
 
 }
