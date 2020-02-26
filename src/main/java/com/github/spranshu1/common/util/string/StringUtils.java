@@ -2,7 +2,7 @@
  * @author pranshu.shrivastava
  * @date Feb 24, 2020
  */
-package com.essential.common.util.string;
+package com.github.spranshu1.common.util.string;
 
 import java.util.List;
 

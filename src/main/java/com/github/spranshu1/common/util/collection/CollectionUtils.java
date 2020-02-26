@@ -2,7 +2,7 @@
  * @author pranshu.shrivastava
  * @date Feb 24, 2020
  */
-package com.essential.common.util.collection;
+package com.github.spranshu1.common.util.collection;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -18,8 +18,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.essential.common.util.Assert;
-import com.essential.common.util.object.ObjectUtils;
+import com.github.spranshu1.common.util.Assert;
+import com.github.spranshu1.common.util.object.ObjectUtils;
 
 public class CollectionUtils {
 	

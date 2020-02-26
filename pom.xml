@@ -2,11 +2,37 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.essential.common.util</groupId>
+	<groupId>com.github.spranshu1.common.util</groupId>
 	<artifactId>common-utils</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Common Utils</name>
 	<description>A utility project containing common utility and helper methods for the ease of project development</description>
+	<url>https://github.com/spranshu1/common-util</url>
+
+	<!-- Lisense -->
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	
+	<!-- Developer Information -->
+	<developers>
+		<developer>
+			<name>Pranshu Shrivastava</name>
+			<email>pranshushrivastava20@gmail.com</email>
+			<organization>com.github.spranshu1.common.util</organization>
+			<organizationUrl>https://github.com/spranshu1/common-util</organizationUrl>
+		</developer>
+	</developers>
+
+	<!-- Source Code Management -->
+	<scm>
+		<connection>scm:git:git://github.com/spranshu1/common-util.git</connection>
+		<developerConnection>scm:git:ssh://github.com:spranshu1/common-util.git</developerConnection>
+		<url>http://github.com/spranshu1/common-util/tree/master</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

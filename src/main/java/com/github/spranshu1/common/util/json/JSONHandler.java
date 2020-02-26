@@ -2,7 +2,7 @@
  * @author pranshu.shrivastava
  *  
  */
-package com.essential.common.util.json;
+package com.github.spranshu1.common.util.json;
 
 
 import java.io.IOException;

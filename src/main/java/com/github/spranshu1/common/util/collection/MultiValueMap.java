@@ -1,7 +1,7 @@
 /**
  * @author pranshu.shrivastava
  */
-package com.essential.common.util.collection;
+package com.github.spranshu1.common.util.collection;
 
 import java.util.List;
 import java.util.Map;

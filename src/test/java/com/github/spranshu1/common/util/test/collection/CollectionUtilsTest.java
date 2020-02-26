@@ -11,7 +11,7 @@
  * @author pranshu.shrivastava
  * @date Feb 25, 2020
  */
-package com.essential.common.util.test.collection;
+package com.github.spranshu1.common.util.test.collection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.function.Function;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.essential.common.util.collection.CollectionUtils;
+import com.github.spranshu1.common.util.collection.CollectionUtils;
 
 
 

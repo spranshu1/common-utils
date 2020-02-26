@@ -1,11 +1,11 @@
-package com.essential.common.util;
+package com.github.spranshu1.common.util;
 
 import java.util.Collection;
 import java.util.Map;
 
-import com.essential.common.util.collection.CollectionUtils;
-import com.essential.common.util.object.ObjectUtils;
-import com.essential.common.util.string.StringUtils;
+import com.github.spranshu1.common.util.collection.CollectionUtils;
+import com.github.spranshu1.common.util.object.ObjectUtils;
+import com.github.spranshu1.common.util.string.StringUtils;
 
 /**
  * Assertion utility class that assists in validating arguments.
