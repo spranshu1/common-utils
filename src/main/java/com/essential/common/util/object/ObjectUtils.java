@@ -2,7 +2,7 @@
  * @author pranshu.shrivastava
  * @date Feb 25, 2020
  */
-package com.common.util.object;
+package com.essential.common.util.object;
 
 import java.lang.reflect.Array;
 import java.util.Collection;

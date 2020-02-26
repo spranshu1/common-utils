@@ -2,13 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.common.util</groupId>
+	<groupId>com.essential.common.util</groupId>
 	<artifactId>common-utils</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Common Utility </name>
-	<description>Common utility and helper methods</description>
+	<name>Common Utils</name>
+	<description>A utility project containing common utility and helper methods for the ease of project development</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<commons-logginv.version>1.2</commons-logginv.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<jackson.version>2.9.10.1</jackson.version>

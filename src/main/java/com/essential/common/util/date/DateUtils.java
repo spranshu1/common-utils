@@ -2,14 +2,14 @@
  * @author pranshu.shrivastava
  * @date Feb 24, 2020
  */
-package com.common.util.date;
+package com.essential.common.util.date;
 
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.common.util.string.StringUtils;
+import com.essential.common.util.string.StringUtils;
 
 public class DateUtils {
 	

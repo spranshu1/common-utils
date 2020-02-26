@@ -1,11 +1,11 @@
-package com.common.util;
+package com.essential.common.util;
 
 import java.util.Collection;
 import java.util.Map;
 
-import com.common.util.collection.CollectionUtils;
-import com.common.util.object.ObjectUtils;
-import com.common.util.string.StringUtils;
+import com.essential.common.util.collection.CollectionUtils;
+import com.essential.common.util.object.ObjectUtils;
+import com.essential.common.util.string.StringUtils;
 
 /**
  * Assertion utility class that assists in validating arguments.
