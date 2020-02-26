@@ -11,6 +11,9 @@ import java.time.format.DateTimeFormatter;
 
 import com.github.spranshu1.common.util.string.StringUtils;
 
+/**
+ * The Class DateUtils.
+ */
 public class DateUtils {
 	
 	/**

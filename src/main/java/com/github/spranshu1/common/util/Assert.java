@@ -28,7 +28,7 @@ import com.github.spranshu1.common.util.string.StringUtils;
  *
  * <pre class="code">
  * Assert.notNull(clazz, "The class must not be null");
- * Assert.isTrue(i > 0, "The value must be greater than zero");</pre>
+ * Assert.isTrue(i &gt; 0, "The value must be greater than zero");</pre>
  *
  * <p>Mainly for internal use within the framework; consider
  * <a href="http://commons.apache.org/proper/commons-lang/">Apache's Commons Lang</a>
@@ -205,6 +205,13 @@ public abstract class Assert {
 	}
 
 
+	/**
+	 * Instance check failed.
+	 *
+	 * @param type the type
+	 * @param obj the obj
+	 * @param msg the msg
+	 */
 	private static void instanceCheckFailed(Class<?> type, Object obj, String msg) {
 		String className = (obj != null ? obj.getClass().getName() : "null");
 		String result = "";
@@ -224,6 +231,13 @@ public abstract class Assert {
 		throw new IllegalArgumentException(result);
 	}
 
+	/**
+	 * Assignable check failed.
+	 *
+	 * @param superType the super type
+	 * @param subType the sub type
+	 * @param msg the msg
+	 */
 	private static void assignableCheckFailed(Class<?> superType, Class<?> subType, String msg) {
 		String result = "";
 		boolean defaultMessage = true;

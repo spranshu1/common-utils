@@ -8,6 +8,9 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * The Class ObjectUtils.
+ */
 public class ObjectUtils {
 	
 	/**
@@ -44,6 +47,8 @@ public class ObjectUtils {
 	/**
 	 * Append the given object to the given array, returning a new array
 	 * consisting of the input array contents plus the given object.
+	 * @param <A> the array type
+	 * @param <O> the object type
 	 * @param array the array to append to (can be {@code null})
 	 * @param obj the object to append
 	 * @return the new array (of the same component type; never {@code null})
@@ -68,7 +73,7 @@ public class ObjectUtils {
 	
 	/**
 	 * Determine whether the given object is empty.
-	 * <p>This method supports the following object types.
+	 * <p>This method supports the following object types.</p>
 	 * <ul>
 	 * <li>{@code Array}: considered empty if its length is zero</li>
 	 * <li>{@link CharSequence}: considered empty if its length is zero</li>
@@ -76,7 +81,7 @@ public class ObjectUtils {
 	 * <li>{@link Map}: delegates to {@link Map#isEmpty()}</li>
 	 * </ul>
 	 * <p>If the given object is non-null and not one of the aforementioned
-	 * supported types, this method returns {@code false}.
+	 * supported types, this method returns {@code false}.</p>
 	 * @param obj the object to check
 	 * @return {@code true} if the object is {@code null} or <em>empty</em>
 	 * @see ObjectUtils#isEmpty(Object[])
@@ -108,6 +113,7 @@ public class ObjectUtils {
 	 * Determine whether the given array is empty:
 	 * i.e. {@code null} or of zero length.
 	 * @param array the array to check
+	 * @return true, if array is null or empty false otherwise
 	 * @see #isEmpty(Object)
 	 */
 	public static boolean isEmpty(Object[] array) {

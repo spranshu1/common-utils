@@ -6,6 +6,12 @@ package com.github.spranshu1.common.util.collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Interface MultiValueMap.
+ *
+ * @param <K> the key type
+ * @param <V> the value type
+ */
 public interface MultiValueMap<K, V> extends Map<K, List<V>> {
 
 	/**

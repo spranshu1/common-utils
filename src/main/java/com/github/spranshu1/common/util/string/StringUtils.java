@@ -6,6 +6,9 @@ package com.github.spranshu1.common.util.string;
 
 import java.util.List;
 
+/**
+ * The Class StringUtils.
+ */
 public class StringUtils {
 	
 	/**
@@ -35,9 +38,9 @@ public class StringUtils {
 	/**
 	 * Check that the given {@code CharSequence} is neither {@code null} nor
 	 * of length 0.
-	 * <p>Note: this method returns {@code true} for a {@code CharSequence}
+	 * <p>Note: this method returns {@code true} for a {@code CharSequence}</p>
 	 * that purely consists of whitespace.
-	 * <p><pre class="code">
+	 * <pre class="code">
 	 * StringUtils.hasLength(null) = false
 	 * StringUtils.hasLength("") = false
 	 * StringUtils.hasLength(" ") = true
@@ -103,10 +106,23 @@ public class StringUtils {
 		return false;
 	}
 
+	/**
+	 * Ends with separator.
+	 *
+	 * @param msg the msg
+	 * @return true, if successful
+	 */
 	public static boolean endsWithSeparator(String msg) {
 		return (msg.endsWith(":") || msg.endsWith(";") || msg.endsWith(",") || msg.endsWith("."));
 	}
 
+	/**
+	 * Message with type name.
+	 *
+	 * @param msg the msg
+	 * @param typeName the type name
+	 * @return the string
+	 */
 	public static String messageWithTypeName(String msg, Object typeName) {
 		return msg + (msg.endsWith(" ") ? "" : ": ") + typeName;
 	}

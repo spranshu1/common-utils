@@ -151,7 +151,7 @@ public final class JSONHandler {
 	 *
 	 * @param jsonString the json string
 	 * @return {@link JsonNode} the json node
-	 * @throws IOException
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static JsonNode fromString(final String jsonString) throws IOException {
 		return OBJ_MAPPER.readTree(jsonString);

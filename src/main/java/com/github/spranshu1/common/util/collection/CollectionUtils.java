@@ -21,6 +21,9 @@ import java.util.stream.Stream;
 import com.github.spranshu1.common.util.Assert;
 import com.github.spranshu1.common.util.object.ObjectUtils;
 
+/**
+ * The Class CollectionUtils.
+ */
 public class CollectionUtils {
 	
 	/**
@@ -41,7 +44,7 @@ public class CollectionUtils {
 	 *	};
 	 *  
 	 * 	// Create Employee list
-	 *	List&lt;Employee&gt; empList = new ArrayList<>();
+	 *	List&lt;Employee&gt; empList = new ArrayList&lt;&gt;();
 	 *	empList.add(new Employee("Ravi","ravi@example.com"));
 	 *  
 	 *	// Convert list of Employees to list of Users
@@ -125,6 +128,8 @@ public class CollectionUtils {
 	
 	/**
 	 * Merge the given array into the given Collection.
+	 *
+	 * @param <E> the element type
 	 * @param array the array to merge (may be {@code null})
 	 * @param collection the target Collection to merge the array into
 	 */
@@ -144,6 +149,9 @@ public class CollectionUtils {
 	 * copying all properties (key-value pairs) over.
 	 * <p>Uses {@code Properties.propertyNames()} to even catch
 	 * default properties linked into the original Properties instance.
+	 *
+	 * @param <K> the key type
+	 * @param <V> the value type
 	 * @param props the Properties instance to merge (may be {@code null})
 	 * @param map the target Map to merge the properties into
 	 */
@@ -208,6 +216,8 @@ public class CollectionUtils {
 	 * '{@code source}'. If no element in '{@code candidates}' is present in
 	 * '{@code source}' returns {@code null}. Iteration order is
 	 * {@link Collection} implementation specific.
+	 *
+	 * @param <E> the element type
 	 * @param source the source Collection
 	 * @param candidates the candidates to search for
 	 * @return the first present object, or {@code null} if not found
@@ -227,6 +237,8 @@ public class CollectionUtils {
 
 	/**
 	 * Find a single value of the given type in the given Collection.
+	 *
+	 * @param <T> the generic type
 	 * @param collection the Collection to search
 	 * @param type the type to look for
 	 * @return first value of the given type found if there is a clear match,
@@ -252,6 +264,8 @@ public class CollectionUtils {
 	
 	/**
 	 * Find a single value of the given type in the given Collection.
+	 *
+	 * @param <T> the generic type
 	 * @param collection the Collection to search
 	 * @param type the type to look for
 	 * @return a value of the given type found if there is a clear match,
@@ -277,6 +291,9 @@ public class CollectionUtils {
 	
 	/**
 	 * Adapt a {@code Map<K, List<V>>} to an {@code MultiValueMap<K, V>}.
+	 *
+	 * @param <K> the key type
+	 * @param <V> the value type
 	 * @param map the original map
 	 * @return the multi-value map
 	 * @since 3.1
@@ -287,17 +304,32 @@ public class CollectionUtils {
 
 	/**
 	 * Adapts a Map to the MultiValueMap contract.
+	 *
+	 * @param <K> the key type
+	 * @param <V> the value type
 	 */
 	@SuppressWarnings("serial")
 	private static class MultiValueMapAdapter<K, V> implements MultiValueMap<K, V>, Serializable {
 
+		/** The map. */
 		private final Map<K, List<V>> map;
 
+		/**
+		 * Instantiates a new multi value map adapter.
+		 *
+		 * @param map the map
+		 */
 		public MultiValueMapAdapter(Map<K, List<V>> map) {
 			Assert.notEmpty(map, "'map' must not be null");
 			this.map = map;
 		}
 
+		/**
+		 * Adds the.
+		 *
+		 * @param key the key
+		 * @param value the value
+		 */
 		@Override
 		public void add(K key, V value) {
 			List<V> values = this.map.get(key);
@@ -308,12 +340,24 @@ public class CollectionUtils {
 			values.add(value);
 		}
 
+		/**
+		 * Gets the first.
+		 *
+		 * @param key the key
+		 * @return the first
+		 */
 		@Override
 		public V getFirst(K key) {
 			List<V> values = this.map.get(key);
 			return (values != null ? values.get(0) : null);
 		}
 
+		/**
+		 * Sets the.
+		 *
+		 * @param key the key
+		 * @param value the value
+		 */
 		@Override
 		public void set(K key, V value) {
 			List<V> values = new LinkedList<V>();
@@ -321,6 +365,11 @@ public class CollectionUtils {
 			this.map.put(key, values);
 		}
 
+		/**
+		 * Sets the all.
+		 *
+		 * @param values the values
+		 */
 		@Override
 		public void setAll(Map<K, V> values) {
 			for (Entry<K, V> entry : values.entrySet()) {
@@ -328,6 +377,11 @@ public class CollectionUtils {
 			}
 		}
 
+		/**
+		 * To single value map.
+		 *
+		 * @return the map
+		 */
 		@Override
 		public Map<K, V> toSingleValueMap() {
 			LinkedHashMap<K, V> singleValueMap = new LinkedHashMap<K,V>(this.map.size());
@@ -337,66 +391,136 @@ public class CollectionUtils {
 			return singleValueMap;
 		}
 
+		/**
+		 * Size.
+		 *
+		 * @return the int
+		 */
 		@Override
 		public int size() {
 			return this.map.size();
 		}
 
+		/**
+		 * Checks if is empty.
+		 *
+		 * @return true, if is empty
+		 */
 		@Override
 		public boolean isEmpty() {
 			return this.map.isEmpty();
 		}
 
+		/**
+		 * Contains key.
+		 *
+		 * @param key the key
+		 * @return true, if successful
+		 */
 		@Override
 		public boolean containsKey(Object key) {
 			return this.map.containsKey(key);
 		}
 
+		/**
+		 * Contains value.
+		 *
+		 * @param value the value
+		 * @return true, if successful
+		 */
 		@Override
 		public boolean containsValue(Object value) {
 			return this.map.containsValue(value);
 		}
 
+		/**
+		 * Gets the.
+		 *
+		 * @param key the key
+		 * @return the list
+		 */
 		@Override
 		public List<V> get(Object key) {
 			return this.map.get(key);
 		}
 
+		/**
+		 * Put.
+		 *
+		 * @param key the key
+		 * @param value the value
+		 * @return the list
+		 */
 		@Override
 		public List<V> put(K key, List<V> value) {
 			return this.map.put(key, value);
 		}
 
+		/**
+		 * Removes the.
+		 *
+		 * @param key the key
+		 * @return the list
+		 */
 		@Override
 		public List<V> remove(Object key) {
 			return this.map.remove(key);
 		}
 
+		/**
+		 * Put all.
+		 *
+		 * @param map the map
+		 */
 		@Override
 		public void putAll(Map<? extends K, ? extends List<V>> map) {
 			this.map.putAll(map);
 		}
 
+		/**
+		 * Clear.
+		 */
 		@Override
 		public void clear() {
 			this.map.clear();
 		}
 
+		/**
+		 * Key set.
+		 *
+		 * @return the sets the
+		 */
 		@Override
 		public Set<K> keySet() {
 			return this.map.keySet();
 		}
 
+		/**
+		 * Values.
+		 *
+		 * @return the collection
+		 */
 		@Override
 		public Collection<List<V>> values() {
 			return this.map.values();
 		}
 
+		/**
+		 * Entry set.
+		 *
+		 * @return the sets the
+		 */
 		@Override
 		public Set<Entry<K, List<V>>> entrySet() {
 			return this.map.entrySet();
 		}
 
+		/**
+		 * Equals.
+		 *
+		 * @param other the other
+		 * @return true, if successful
+		 */
 		@Override
 		public boolean equals(Object other) {
 			if (this == other) {
@@ -405,11 +529,21 @@ public class CollectionUtils {
 			return map.equals(other);
 		}
 
+		/**
+		 * Hash code.
+		 *
+		 * @return the int
+		 */
 		@Override
 		public int hashCode() {
 			return this.map.hashCode();
 		}
 
+		/**
+		 * To string.
+		 *
+		 * @return the string
+		 */
 		@Override
 		public String toString() {
 			return this.map.toString();
