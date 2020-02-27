@@ -38,12 +38,12 @@ public final class AuthUtil {
 	 * @return the string
 	 * @throws JOSEException the JOSE exception
 	 */
-	public static String signature(final String payload,final String defPrivateKeyId, final Map<String, String> privateKeyMap) throws JOSEException {
+	public static String signature(final String payload,final String privateKeyId, final Map<String, String> privateKeyMap) throws JOSEException {
 		logger.debug("called with {}", payload);
 
 		String signature = null;
 		try {
-			final JWS jwsObject = JWSUtils.getJWSBuilder(defPrivateKeyId).payload(payload).build();
+			final JWS jwsObject = JWSUtils.getJWSBuilder(privateKeyId).payload(payload).build();
 			signature = JWSUtils.sign(jwsObject, privateKeyMap).split("\\.")[2];
 		} catch (IllegalArgumentException | IllegalStateException | NoSuchAlgorithmException | InvalidKeySpecException
 				| IOException ex) {
