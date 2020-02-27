@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * The Class ObjectUtils.
  */
-public class ObjectUtils {
+public final class ObjectUtil {
 	
 	/**
 	 * Convert the given array (which may be a primitive array) to an
@@ -84,7 +84,7 @@ public class ObjectUtils {
 	 * supported types, this method returns {@code false}.</p>
 	 * @param obj the object to check
 	 * @return {@code true} if the object is {@code null} or <em>empty</em>
-	 * @see ObjectUtils#isEmpty(Object[])
+	 * @see ObjectUtil#isEmpty(Object[])
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isEmpty(Object obj) {

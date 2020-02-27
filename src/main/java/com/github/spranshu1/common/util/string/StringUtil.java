@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * The Class StringUtils.
  */
-public class StringUtils {
+public class StringUtil {
 	
 	/**
 	 * Checks if the given String field is null or empty (or contains only spaces).
