@@ -3,9 +3,9 @@ package com.github.spranshu1.common.util;
 import java.util.Collection;
 import java.util.Map;
 
-import com.github.spranshu1.common.util.collection.CollectionUtils;
-import com.github.spranshu1.common.util.object.ObjectUtils;
-import com.github.spranshu1.common.util.string.StringUtils;
+import com.github.spranshu1.common.util.collection.CollectionUtil;
+import com.github.spranshu1.common.util.object.ObjectUtil;
+import com.github.spranshu1.common.util.string.StringUtil;
 
 /**
  * Assertion utility class that assists in validating arguments.
@@ -89,7 +89,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the object array is {@code null} or contains no elements
 	 */
 	public static void notEmpty(Object[] array, String message) {
-		if (ObjectUtils.isEmpty(array)) {
+		if (ObjectUtil.isEmpty(array)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
@@ -123,7 +123,7 @@ public abstract class Assert {
 	 * contains no elements
 	 */
 	public static void notEmpty(Collection<?> collection, String message) {
-		if (CollectionUtils.isEmpty(collection)) {
+		if (CollectionUtil.isEmpty(collection)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
@@ -138,7 +138,7 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the map is {@code null} or contains no entries
 	 */
 	public static void notEmpty(Map<?, ?> map, String message) {
-		if (CollectionUtils.isEmpty(map)) {
+		if (CollectionUtil.isEmpty(map)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
@@ -216,12 +216,12 @@ public abstract class Assert {
 		String className = (obj != null ? obj.getClass().getName() : "null");
 		String result = "";
 		boolean defaultMessage = true;
-		if (StringUtils.hasLength(msg)) {
-			if (StringUtils.endsWithSeparator(msg)) {
+		if (StringUtil.hasLength(msg)) {
+			if (StringUtil.endsWithSeparator(msg)) {
 				result = msg + " ";
 			}
 			else {
-				result = StringUtils.messageWithTypeName(msg, className);
+				result = StringUtil.messageWithTypeName(msg, className);
 				defaultMessage = false;
 			}
 		}
@@ -241,12 +241,12 @@ public abstract class Assert {
 	private static void assignableCheckFailed(Class<?> superType, Class<?> subType, String msg) {
 		String result = "";
 		boolean defaultMessage = true;
-		if (StringUtils.hasLength(msg)) {
-			if (StringUtils.endsWithSeparator(msg)) {
+		if (StringUtil.hasLength(msg)) {
+			if (StringUtil.endsWithSeparator(msg)) {
 				result = msg + " ";
 			}
 			else {
-				result = StringUtils.messageWithTypeName(msg, subType);
+				result = StringUtil.messageWithTypeName(msg, subType);
 				defaultMessage = false;
 			}
 		}

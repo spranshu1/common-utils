@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.github.spranshu1.common.util.Assert;
-import com.github.spranshu1.common.util.object.ObjectUtils;
+import com.github.spranshu1.common.util.object.ObjectUtil;
 
 /**
  * The Class CollectionUtils.
  */
-public class CollectionUtils {
+public final class CollectionUtil {
 	
 	/**
 	 * Converts list of one type T to another type U, useful when converting large list of objects to another list.<br>
@@ -118,12 +118,12 @@ public class CollectionUtils {
 	 * <p>A {@code null} source value will be converted to an empty List.
 	 * @param source the (potentially primitive) array
 	 * @return the converted List result
-	 * @see ObjectUtils#toObjectArray(Object)
+	 * @see ObjectUtil#toObjectArray(Object)
 	 * @see Arrays#asList(Object[])
 	 */
 	@SuppressWarnings("rawtypes")
 	public static List arrayToList(Object source) {
-		return Arrays.asList(ObjectUtils.toObjectArray(source));
+		return Arrays.asList(ObjectUtil.toObjectArray(source));
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class CollectionUtils {
 		if (collection == null) {
 			throw new IllegalArgumentException("Collection must not be null");
 		}
-		Object[] arr = ObjectUtils.toObjectArray(array);
+		Object[] arr = ObjectUtil.toObjectArray(array);
 		for (Object elem : arr) {
 			collection.add((E) elem);
 		}
