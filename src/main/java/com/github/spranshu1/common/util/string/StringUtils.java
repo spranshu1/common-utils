@@ -2,11 +2,14 @@
  * @author pranshu.shrivastava
  * @date Feb 24, 2020
  */
-package com.common.util.string;
+package com.github.spranshu1.common.util.string;
 
 import java.util.List;
 
-public class StringUtil {
+/**
+ * The Class StringUtils.
+ */
+public class StringUtils {
 	
 	/**
 	 * Checks if the given String field is null or empty (or contains only spaces).
@@ -30,6 +33,24 @@ public class StringUtil {
 	 */
 	public static boolean strFieldIsNotEmpty(final String field) {
 		return !strFieldIsEmpty(field);
+	}
+	
+	/**
+	 * Check that the given {@code CharSequence} is neither {@code null} nor
+	 * of length 0.
+	 * <p>Note: this method returns {@code true} for a {@code CharSequence}</p>
+	 * that purely consists of whitespace.
+	 * <pre class="code">
+	 * StringUtils.hasLength(null) = false
+	 * StringUtils.hasLength("") = false
+	 * StringUtils.hasLength(" ") = true
+	 * StringUtils.hasLength("Hello") = true
+	 * </pre>
+	 * @param str the {@code CharSequence} to check (may be {@code null})
+	 * @return {@code true} if the {@code CharSequence} is not {@code null} and has length
+	 */
+	public static boolean hasLength(CharSequence str) {
+		return (str != null && str.length() > 0);
 	}
 	
 	
@@ -85,6 +106,26 @@ public class StringUtil {
 		return false;
 	}
 
+	/**
+	 * Ends with separator.
+	 *
+	 * @param msg the msg
+	 * @return true, if successful
+	 */
+	public static boolean endsWithSeparator(String msg) {
+		return (msg.endsWith(":") || msg.endsWith(";") || msg.endsWith(",") || msg.endsWith("."));
+	}
+
+	/**
+	 * Message with type name.
+	 *
+	 * @param msg the msg
+	 * @param typeName the type name
+	 * @return the string
+	 */
+	public static String messageWithTypeName(String msg, Object typeName) {
+		return msg + (msg.endsWith(" ") ? "" : ": ") + typeName;
+	}
 
 
 }
