@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.spranshu1.common.util</groupId>
 	<artifactId>common-utils</artifactId>
@@ -94,37 +96,6 @@
 		</repository>
 	</distributionManagement>
 
-	<!-- Maven GPG Plugin - Only used in release process -->
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
-
 	<build>
 		<plugins>
 			<plugin>
@@ -175,6 +146,20 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Maven GPG Plugin - Only used in release process -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- For managing release - Jgitflow -->
 			<plugin>
@@ -199,7 +184,7 @@
 						<versionTagPrefix>version-</versionTagPrefix>
 					</flowInitContext>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<noDeploy>true</noDeploy>
+					<noDeploy>false</noDeploy>
 					<allowUntracked>true</allowUntracked>
 					<scmCommentPrefix>[RELEASE]</scmCommentPrefix>
 				</configuration>

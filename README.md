@@ -4,7 +4,7 @@ A small java project holding various utility classes to reduce development effor
 
 ### Target Version
 
-`0.0.1`
+`1.0.0`
 
 ### Setup
 
