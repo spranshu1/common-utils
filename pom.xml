@@ -177,6 +177,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 			<!-- For managing release - Jgitflow -->
 			<plugin>
 				<groupId>external.atlassian.jgitflow</groupId>
@@ -184,15 +185,17 @@
 				<version>${jgitflow-maven.version}</version>
 				<configuration>
 					<flowInitContext>
-						<!-- <masterBranchName>master</masterBranchName> <developBranchName>develop</developBranchName> -->
-						<featureBranchPrefix>feature-</featureBranchPrefix>
-						<releaseBranchPrefix>release-</releaseBranchPrefix>
-						<hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
-						<versionTagPrefix>release_</versionTagPrefix>
-					</flowInitContext>
+		                <masterBranchName>master</masterBranchName>
+		                <developBranchName>develop</developBranchName>
+		                <featureBranchPrefix>feature-</featureBranchPrefix>
+		                <releaseBranchPrefix>release-</releaseBranchPrefix>
+		                <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+		                <versionTagPrefix>version-</versionTagPrefix>
+		            </flowInitContext>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<noDeploy>true</noDeploy>
 					<allowUntracked>true</allowUntracked>
+					<scmCommentPrefix>[RELEASE]</scmCommentPrefix>
 				</configuration>
 			</plugin>
 		</plugins>
