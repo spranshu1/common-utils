@@ -60,19 +60,6 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 
-		<!-- JWT/JWS signing/verification -->
-		<dependency>
-			<groupId>com.igtb.digital</groupId>
-			<artifactId>digital-jose</artifactId>
-			<version>${jose.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-simple</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -148,6 +135,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.4</version>
 				<executions>
 					<execution>
 						<id>sign-artifacts</id>
