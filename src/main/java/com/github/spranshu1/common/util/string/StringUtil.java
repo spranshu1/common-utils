@@ -141,4 +141,25 @@ public class StringUtil {
 	}
 
 
+	/**
+	 * Check if a string is numeric
+	 * <pre class="code">
+	 * StringUtils.isNumeric("50") = true
+	 * StringUtils.isNumeric("101.12") = true
+	 * StringUtils.hasLength("") = false
+	 * StringUtils.hasLength(" ") = false
+	 * StringUtils.hasLength("Hello") = false
+	 * </pre>
+	 * @param str the string to check
+	 * @return True if numeric False otherwise
+	 */
+	public static boolean isNumeric(final String str) {
+
+		if (str == null || str.length() == 0) {
+			return false;
+		}
+
+		return str.chars().allMatch(Character::isDigit);
+	}
+
 }

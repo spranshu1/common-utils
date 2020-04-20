@@ -47,7 +47,7 @@ import com.github.spranshu1.common.util.string.StringUtil;
  * Assert.notNull(clazz, "The class must not be null");
  * Assert.isTrue(i &gt; 0, "The value must be greater than zero");</pre>
  *
- * <p>Mainly for internal use within the utility.
+ * <p>Mainly for internal use within the framework.
  *
  */
 public abstract class Assert {

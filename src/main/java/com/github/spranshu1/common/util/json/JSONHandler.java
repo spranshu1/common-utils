@@ -98,7 +98,7 @@ public final class JSONHandler {
     /**
      * Converts ResultSet into array of JSONObjects
      *
-     * @param rs
+     * @param rs the resultset
      * @return List of JSONObjects
      * @throws SQLException the sql exception
      */
@@ -127,6 +127,7 @@ public final class JSONHandler {
      * Create a json string from the input result set.
      *
      * @param rs {@link ResultSet}
+     * @return json string
      * @throws SQLException the sql exception
      * @throws IOException the IO exception
      */
@@ -199,7 +200,7 @@ public final class JSONHandler {
     /**
      * Merge any number of ObjectNode
      *
-     * @param jsonObjects
+     * @param jsonObjects the json object to merge
      * @return merged jsonObject
      */
     @SuppressWarnings("unchecked")
