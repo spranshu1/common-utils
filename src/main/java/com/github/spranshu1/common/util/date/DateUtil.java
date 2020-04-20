@@ -17,6 +17,10 @@
  */
 package com.github.spranshu1.common.util.date;
 
+import com.github.spranshu1.common.util.string.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -27,26 +31,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.spranshu1.common.util.string.StringUtil;
-
 /**
  * The Class DateUtils.
  */
 public class DateUtil {
 
     /**
-     * The logger.
-     */
-    private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
-
-    /**
      * The ISO date format {@value}
      */
     public static final String ISO_DATE_FMT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";  // Quoted "Z" to indicate UTC, no timezone offset
-
+    /**
+     * The logger.
+     */
+    private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
     /**
      * The constant for Timestamp format object
      */

@@ -19,12 +19,10 @@ package com.github.spranshu1.common.util.test.json;
 
 import org.junit.Test;
 
-import java.sql.ResultSet;
-
 public class JSONHandlerTest {
 
     @Test
-    public void resultSetToJsonTest(){
+    public void resultSetToJsonTest() {
 
     }
 }

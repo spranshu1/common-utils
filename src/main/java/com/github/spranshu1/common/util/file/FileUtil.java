@@ -28,6 +28,7 @@ public class FileUtil {
     /**
      * Gets filename from filepath.
      * The filename is the farthest element from the root in file directory
+     *
      * @param filePath the path where file exist
      * @return String representation of file name
      * @throws FileNotFoundException the exception
@@ -37,7 +38,7 @@ public class FileUtil {
 
         Path fileName = path.getFileName();
 
-        if(fileName == null){
+        if (fileName == null) {
             throw new FileNotFoundException(Messages.ERR_FILE_NOT_FOUND);
         }
 
@@ -47,10 +48,11 @@ public class FileUtil {
 
     /**
      * Gets the file extension from file name
+     *
      * @param filename the file name
      * @return extension of file eg: .csv or .xlsx
      */
-    public static String getFileExtension(final String filename){
+    public static String getFileExtension(final String filename) {
 
         return filename.substring(filename.lastIndexOf("."));
 

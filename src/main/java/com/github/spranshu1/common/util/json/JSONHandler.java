@@ -17,6 +17,19 @@
  */
 package com.github.spranshu1.common.util.json;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.spranshu1.common.util.date.DateUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -26,20 +39,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.spranshu1.common.util.date.DateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.core.JsonParser.Feature;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
@@ -58,27 +57,22 @@ public final class JSONHandler {
      * The object mapper, used later for JSON conversion.
      */
     private static final ObjectMapper OBJ_MAPPER = new ObjectMapper();
-
-    /**
-     * The json factory, used for getting instance of json generator
-     */
-    private static JsonFactory factory = new JsonFactory();
-
     /**
      * The empty string constant
      */
     private static final String EMPTY_STRING = "";
-
     /**
      * The number sql types list
      */
     private static final List<Integer> numberSQLTypes = Arrays.asList(new Integer[]{-6, -5, 2, 4, 5});
-
     /**
      * The decimal sql types list
      */
     private static final List<Integer> decimalSQLTypes = Arrays.asList(new Integer[]{3, 6, 7, 8});
-
+    /**
+     * The json factory, used for getting instance of json generator
+     */
+    private static JsonFactory factory = new JsonFactory();
 
     static {
         OBJ_MAPPER.configure(Feature.IGNORE_UNDEFINED, true);
@@ -96,40 +90,12 @@ public final class JSONHandler {
     }
 
     /**
-     * Converts ResultSet into array of JSONObjects
-     *
-     * @param rs the resultset
-     * @return List of JSONObjects
-     * @throws SQLException the sql exception
-     */
-    @SuppressWarnings("unchecked")
-    public List<ObjectNode> resultSetToJson(ResultSet rs) throws SQLException {
-        List<ObjectNode> jsonArray = new ArrayList<>();
-        while (rs.next()) {
-            ObjectNode object = OBJ_MAPPER.createObjectNode();
-            int noOfColumns = rs.getMetaData().getColumnCount();
-            for (int i = 1; i <= noOfColumns; i++) {
-                if (rs.getObject(i) != null && rs.getObject(i) != EMPTY_STRING) {
-                    if (rs.getMetaData().getColumnType(i) == 93)
-                        object.put(rs.getMetaData().getColumnLabel(i),
-                                DateUtil.timestampToString(new Date(rs.getTimestamp(i).getTime())));
-                    else
-                        object.set(rs.getMetaData().getColumnLabel(i),
-                                OBJ_MAPPER.convertValue(rs.getObject(i),JsonNode.class));
-                }
-            }
-            jsonArray.add(object);
-        }
-        return jsonArray;
-    }
-
-    /**
      * Create a json string from the input result set.
      *
      * @param rs {@link ResultSet}
      * @return json string
      * @throws SQLException the sql exception
-     * @throws IOException the IO exception
+     * @throws IOException  the IO exception
      */
     public static String createJsonFromResultSet(ResultSet rs) throws Exception {
 
@@ -242,7 +208,6 @@ public final class JSONHandler {
         return payloadJson;
     }
 
-
     /**
      * Converts JSON string to Object of type specified as argument.
      * <p>
@@ -271,7 +236,6 @@ public final class JSONHandler {
         }
         return payloadObj;
     }
-
 
     /**
      * Converts JSON string to Object of type specified as argument. This is useful when type refers to generic, e.g. User&lt;Guest&gt; (instead of simple User.class).
@@ -322,7 +286,6 @@ public final class JSONHandler {
         return OBJ_MAPPER.readTree(jsonString);
     }
 
-
     /**
      * Return OBJ_MAPPER object instance.
      *
@@ -330,6 +293,34 @@ public final class JSONHandler {
      */
     public static ObjectMapper getObjectMapper() {
         return OBJ_MAPPER;
+    }
+
+    /**
+     * Converts ResultSet into array of JSONObjects
+     *
+     * @param rs the resultset
+     * @return List of JSONObjects
+     * @throws SQLException the sql exception
+     */
+    @SuppressWarnings("unchecked")
+    public List<ObjectNode> resultSetToJson(ResultSet rs) throws SQLException {
+        List<ObjectNode> jsonArray = new ArrayList<>();
+        while (rs.next()) {
+            ObjectNode object = OBJ_MAPPER.createObjectNode();
+            int noOfColumns = rs.getMetaData().getColumnCount();
+            for (int i = 1; i <= noOfColumns; i++) {
+                if (rs.getObject(i) != null && rs.getObject(i) != EMPTY_STRING) {
+                    if (rs.getMetaData().getColumnType(i) == 93)
+                        object.put(rs.getMetaData().getColumnLabel(i),
+                                DateUtil.timestampToString(new Date(rs.getTimestamp(i).getTime())));
+                    else
+                        object.set(rs.getMetaData().getColumnLabel(i),
+                                OBJ_MAPPER.convertValue(rs.getObject(i), JsonNode.class));
+                }
+            }
+            jsonArray.add(object);
+        }
+        return jsonArray;
     }
 
 }
