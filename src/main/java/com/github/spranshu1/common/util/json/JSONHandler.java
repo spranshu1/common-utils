@@ -197,13 +197,13 @@ public final class JSONHandler {
     }
 
     /**
-     * Merge any number of ObjectNode 
+     * Merge any number of ObjectNode
      *
      * @param jsonObjects
      * @return merged jsonObject
      */
     @SuppressWarnings("unchecked")
-    public ObjectNode mergeJsons(ObjectNode... jsonObjects) {
+    public static ObjectNode mergeJsons(ObjectNode... jsonObjects) {
         ObjectNode result = OBJ_MAPPER.createObjectNode();
         for (ObjectNode object : jsonObjects) {
             if (object != null)
