@@ -55,11 +55,19 @@ Ensure local installation of following softwares/tools:
 `1.0.2`
 
 - **Updates**:
-	- WIP
+	- 
+- **Fixes**:
+	- none
+
+`1.0.1`
+
+- **Updates**:
+	- Vulnerability patch `com.fasterxml.jackson` version bump to `2.9.10.3`
+	- `Jgitflow` added for release process automation 
 - **Fixes**:
 	- none
 	
-`1.0.1`
+`1.0.0`
 
 - First version	
 
