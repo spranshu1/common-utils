@@ -54,10 +54,10 @@ public class StringUtil {
      * <p>Note: this method returns {@code true} for a {@code CharSequence}</p>
      * that purely consists of whitespace.
      * <pre class="code">
-     * StringUtils.hasLength(null) = false
-     * StringUtils.hasLength("") = false
-     * StringUtils.hasLength(" ") = true
-     * StringUtils.hasLength("Hello") = true
+     *     StringUtils.hasLength(null) = false
+     *     StringUtils.hasLength("") = false
+     *     StringUtils.hasLength(" ") = true
+     *     StringUtils.hasLength("Hello") = true
      * </pre>
      *
      * @param str the {@code CharSequence} to check (may be {@code null})

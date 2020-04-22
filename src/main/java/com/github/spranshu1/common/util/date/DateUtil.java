@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -186,6 +187,19 @@ public class DateUtil {
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    /**
+     * Returns the minute part of the given input parameter date.
+     *
+     * @param date
+     *            {@link Date}
+     * @return int minute in the date
+     */
+    public static int getMinute(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MINUTE);
     }
 
 

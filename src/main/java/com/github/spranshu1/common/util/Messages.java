@@ -24,10 +24,39 @@ package com.github.spranshu1.common.util;
  */
 public class Messages {
 
+    /**
+     * The constant ERR_FILE_READ.
+     */
     public static final String ERR_FILE_READ = "Error while reading file";
 
-    public static final String ERR_FILE_NOT_FOUND = "File not found at given path";
+    /**
+     * The constant ERR_FILE_NAME_MISSING.
+     */
+    public static final String ERR_FILE_NAME_MISSING = "please provide filepath along with filename";
 
+    /**
+     * The constant ERR_FILE_NOT_FOUND.
+     */
+    public static final String ERR_FILE_NOT_FOUND = "File not found at given path,"+ERR_FILE_NAME_MISSING;
+
+    /**
+     * The constant ERR_INVALID_EXT.
+     */
     public static final String ERR_INVALID_EXT = "Invalid file extension.Please provide .csv or .xlsx";
 
+
+    /**
+     * The constant ERR_DIR_ZIP.
+     */
+    public static final String ERR_DIR_ZIP = "Directory could not be zipped due to exception,"+ERR_FILE_NAME_MISSING;
+
+    /**
+     * The constant ERR_FILE_ZIP.
+     */
+    public static final String ERR_FILE_ZIP = "File could not be zipped due to exception,"+ERR_FILE_NAME_MISSING;
+
+    /**
+     * The constant ERR_FILE_UNZIP.
+     */
+    public static final String ERR_FILE_UNZIP = "File could not be unzipped due to exception";
 }
