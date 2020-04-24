@@ -41,6 +41,10 @@ public class ZipUtil {
     /**
      * Used for zipping file or folder
      * It takes source file/folder and target file path as a String
+     * <pre class="code">
+     *      ZipUtil.zip("D:\testfolder\test.txt","D:\test.zip") // creates test.zip
+     *      ZipUtil.zip("D:\testfolder","D:\testFolder.zip") // creates testFolder.zip
+     * </pre>
      *
      * @param source the source destination
      * @param output the output destination
@@ -98,19 +102,18 @@ public class ZipUtil {
     private static void populateFilesList(File dir) {
         File[] files = dir.listFiles();
 
-        Consumer<File> isFile = file -> {
+        for (File file : files) {
             if (file.isFile())
                 filesListInDir.add(file.getAbsolutePath());
             else
                 populateFilesList(file);
-        };
+        }
 
-        if(files != null)
-            Arrays.stream(files).filter(Objects::isNull).forEach(isFile);
     }
 
     /**
      * Zips multiple input streams
+     * Files created from input stream will have .txt extension
      *
      * @param lis        List of inputstreams to be zipped together
      * @param zippedFile Target file path as a String
@@ -121,7 +124,7 @@ public class ZipUtil {
              ZipOutputStream zos = new ZipOutputStream(fos)) {
             int i = 0;
             for (InputStream file : lis) {
-                ZipEntry ze = new ZipEntry(i + ".json");
+                ZipEntry ze = new ZipEntry(i + ".txt");
                 zos.putNextEntry(ze);
                 byte[] buffer = new byte[1024];
                 int len;

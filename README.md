@@ -55,7 +55,11 @@ Ensure local installation of following softwares/tools:
 `1.0.2`
 
 - **Updates**:
-	- 
+	- Below utilities are now available
+	    - ZipUtil
+	    - HexUtil
+	    - FileUtil
+	- `JSONHandler` now support creating JSON from ResultSet Object	    
 - **Fixes**:
 	- none
 

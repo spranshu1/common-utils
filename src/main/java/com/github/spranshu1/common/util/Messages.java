@@ -59,4 +59,9 @@ public class Messages {
      * The constant ERR_FILE_UNZIP.
      */
     public static final String ERR_FILE_UNZIP = "File could not be unzipped due to exception";
+
+    /**
+     * The constant ERR_FILE_NULL.
+     */
+    public static final String ERR_FILE_NULL = "File must not be null";
 }
