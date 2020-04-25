@@ -4,6 +4,7 @@ package com.github.spranshu1.common.util.test.file;
 import com.github.spranshu1.common.util.file.ZipUtil;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import java.io.FileInputStream;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * The type Zip util test.
  */
-@DisabledOnOs({OS.LINUX,OS.MAC})
+@EnabledOnOs(OS.WINDOWS)
 public class ZipUtilTest {
 
     private static final Path resourceDirectory = Paths.get("src","test","resources");
