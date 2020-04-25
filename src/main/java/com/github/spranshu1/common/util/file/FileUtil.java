@@ -30,7 +30,7 @@ import java.nio.file.Paths;
 /**
  * Holds utility methods for handling file related operations
  */
-public class FileUtil {
+public final class FileUtil {
 
     /**
      * Gets filename from filepath.

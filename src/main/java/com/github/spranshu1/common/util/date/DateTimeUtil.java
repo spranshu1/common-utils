@@ -35,7 +35,7 @@ import java.util.TimeZone;
 /**
  * The Class DateUtils.
  */
-public class DateUtil {
+public final class DateTimeUtil {
 
     /**
      * The ISO date format {@value}
@@ -44,7 +44,7 @@ public class DateUtil {
     /**
      * The logger.
      */
-    private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
+    private final static Logger logger = LoggerFactory.getLogger(DateTimeUtil.class);
     /**
      * The constant for Timestamp format object
      */
@@ -76,7 +76,7 @@ public class DateUtil {
      * 	LocalDateTime secondDate = LocalDateTime.of(2020, 2, 23, 11, 55);
      *
      * 	// Check if firstDate is after secondDate
-     * 	boolean isAfter = DateUtil.<b>isDateAfter</b>(firstDate, secondDate);
+     * 	boolean isAfter = DateTimeUtil.<b>isDateAfter</b>(firstDate, secondDate);
      * </code></pre>
      *
      * @param firstDate  the first date
@@ -85,12 +85,8 @@ public class DateUtil {
      */
     public static boolean isDateAfter(final LocalDateTime firstDate, final LocalDateTime secondDate) {
         final boolean response;
-        if ((firstDate != null && secondDate != null)
-                && (firstDate.isAfter(secondDate) || firstDate.isEqual(secondDate))) {
-            response = true;
-        } else {
-            response = false;
-        }
+        response = (firstDate != null && secondDate != null)
+                && (firstDate.isAfter(secondDate) || firstDate.isEqual(secondDate));
         return response;
     }
 
@@ -109,7 +105,7 @@ public class DateUtil {
      * Example,
      * <pre><code>
      * 	//Convert String to LocalDateTime
-     * 	LocalDateTime result = DateUtil.<b>stringToLocalDateTime</b>("10/06/2020", "dd/mm/uuuu");
+     * 	LocalDateTime result = DateTimeUtil.<b>stringToLocalDateTime</b>("10/06/2020", "dd/mm/uuuu");
      * </code></pre>
      *
      * @param dateTime the date time string

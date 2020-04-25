@@ -65,7 +65,7 @@ public final class CollectionUtil {
      * @see Function
      * @see Stream
      */
-    public static <T, U> List<U> convertList(List<T> from, Function<T, U> func) {
+    public static <T, U> List<U> convertList(final List<T> from, final Function<T, U> func) {
         return from.stream().map(func).collect(Collectors.toList());
     }
 
@@ -309,7 +309,7 @@ public final class CollectionUtil {
      * @since 3.1
      */
     public static <K, V> MultiValueMap<K, V> toMultiValueMap(Map<K, List<V>> map) {
-        return new MultiValueMapAdapter<K, V>(map);
+        return new MultiValueMapAdapter<>(map);
     }
 
     /**
@@ -344,11 +344,7 @@ public final class CollectionUtil {
          */
         @Override
         public void add(K key, V value) {
-            List<V> values = this.map.get(key);
-            if (values == null) {
-                values = new LinkedList<V>();
-                this.map.put(key, values);
-            }
+            List<V> values = this.map.computeIfAbsent(key, k -> new LinkedList<V>());
             values.add(value);
         }
 
@@ -372,7 +368,7 @@ public final class CollectionUtil {
          */
         @Override
         public void set(K key, V value) {
-            List<V> values = new LinkedList<V>();
+            List<V> values = new LinkedList<>();
             values.add(value);
             this.map.put(key, values);
         }
@@ -396,7 +392,7 @@ public final class CollectionUtil {
          */
         @Override
         public Map<K, V> toSingleValueMap() {
-            LinkedHashMap<K, V> singleValueMap = new LinkedHashMap<K, V>(this.map.size());
+            LinkedHashMap<K, V> singleValueMap = new LinkedHashMap<>(this.map.size());
             for (Entry<K, List<V>> entry : map.entrySet()) {
                 singleValueMap.put(entry.getKey(), entry.getValue().get(0));
             }
@@ -534,7 +530,7 @@ public final class CollectionUtil {
          * @return true, if successful
          */
         @Override
-        public boolean equals(Object other) {
+        public boolean equals(final Object other) {
             if (this == other) {
                 return true;
             }

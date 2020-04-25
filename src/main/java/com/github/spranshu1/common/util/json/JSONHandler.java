@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.spranshu1.common.util.date.DateUtil;
+import com.github.spranshu1.common.util.date.DateTimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,7 +72,7 @@ public final class JSONHandler {
     /**
      * The json factory, used for getting instance of json generator
      */
-    private static JsonFactory factory = new JsonFactory();
+    private static final JsonFactory factory = new JsonFactory();
 
     static {
         OBJ_MAPPER.configure(Feature.IGNORE_UNDEFINED, true);
@@ -97,7 +97,7 @@ public final class JSONHandler {
      * @throws SQLException the sql exception
      * @throws IOException  the IO exception
      */
-    public static String createJsonFromResultSet(ResultSet rs) throws Exception {
+    public static String createJsonFromResultSet(final ResultSet rs) throws Exception {
 
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
              JsonGenerator generator = factory.createGenerator(baos)) {
@@ -125,7 +125,7 @@ public final class JSONHandler {
      * @throws IOException  the IO exception
      * @throws SQLException the sql exception
      */
-    private static void writeRow(ResultSet rs, JsonGenerator generator) throws IOException, SQLException {
+    private static void writeRow(final ResultSet rs, final JsonGenerator generator) throws IOException, SQLException {
         generator.writeStartObject();
         int noOfColumns = rs.getMetaData().getColumnCount();
         for (int i = 1; i <= noOfColumns; i++) {
@@ -134,7 +134,7 @@ public final class JSONHandler {
             if (rs.getMetaData().getColumnType(i) == 93) {
                 Timestamp ts = rs.getTimestamp(i);
                 if (ts != null)
-                    generator.writeObject(DateUtil.timestampToString(new Date(ts.getTime())));
+                    generator.writeObject(DateTimeUtil.timestampToString(new Date(ts.getTime())));
                 else
                     generator.writeString(EMPTY_STRING);
                 // 91 for date type column
@@ -142,7 +142,7 @@ public final class JSONHandler {
                 Date date = rs.getDate(i);
                 if (date != null)
                     // dateFormat.format(new Date(date.getTime()))
-                    generator.writeObject(DateUtil.dateToString(new Date(date.getTime())));
+                    generator.writeObject(DateTimeUtil.dateToString(new Date(date.getTime())));
                 else
                     generator.writeString(EMPTY_STRING);
             } else {
@@ -170,7 +170,7 @@ public final class JSONHandler {
      * @return merged jsonObject
      */
     @SuppressWarnings("unchecked")
-    public static ObjectNode mergeJsons(ObjectNode... jsonObjects) {
+    public static ObjectNode mergeJsons(final ObjectNode... jsonObjects) {
         ObjectNode result = OBJ_MAPPER.createObjectNode();
         for (ObjectNode object : jsonObjects) {
             if (object != null)
@@ -230,7 +230,6 @@ public final class JSONHandler {
         try {
             payloadObj = OBJ_MAPPER.readValue(payloadJson, type);
         } catch (Exception ex) {
-            payloadObj = null;
             logger.error("{} - Exception converting Json to Object of type {} - {}", "SYS_UNSUP_FUNC", type, payloadJson);
             logger.error(ex.getMessage(), ex);
         }
@@ -243,25 +242,24 @@ public final class JSONHandler {
      * Example,
      * <pre><code>
      * 	// Create JSON String
-     * 	String payloadJson = "{ 'name' : 'John', 'surname' : 'Smith' }";
+     * 	String strJson = "{ 'name' : 'John', 'surname' : 'Smith' }";
      *
      * 	// Convert JSON String to POJO of type User&lt;Guest&gt;
      * 	TypeReference&lt;User&lt;Guest&gt;&gt; ref = new TypeReference&lt;User&lt;Guest&gt;&gt;() {};
-     * 	User&lt;Guest&gt; guestUser = JSONHandler.<b>fromJson</b>(payloadJson, ref);
+     * 	User&lt;Guest&gt; guestUser = JSONHandler.<b>fromJson</b>(strJson, ref);
      * </code></pre>
      *
      * @param <T>         the generic type
-     * @param payloadJson the JSON string data to be transformed to POJO
+     * @param strJson the JSON string data to be transformed to POJO
      * @param ref         the type of object to be returned
      * @return the transformed object of type T
      */
-    public static <T> T fromJson(final String payloadJson, final TypeReference<T> ref) {
+    public static <T> T fromJson(final String strJson, final TypeReference<T> ref) {
         T payloadObj = null;
         try {
-            payloadObj = OBJ_MAPPER.readValue(payloadJson, ref);
+            payloadObj = OBJ_MAPPER.readValue(strJson, ref);
         } catch (Exception ex) {
-            payloadObj = null;
-            logger.error("{} - Exception converting Json to Object of type {} - {}", "SYS_UNSUP_FUNC", ref.getClass().getComponentType(), payloadJson);
+            logger.error("{} - Exception converting Json to Object of type {} - {}", "SYS_UNSUP_FUNC", ref.getClass().getComponentType(), strJson);
             logger.error(ex.getMessage(), ex);
         }
         return payloadObj;
@@ -275,7 +273,7 @@ public final class JSONHandler {
      * 	String payloadJson = "{ 'name' : 'John', 'surname' : 'Smith' }";
      *
      * 	// Convert JSON String to JsonNode
-     * 	JsonNode guestUser = JSONHandler.<b>fromString</b>(payloadJson);
+     * 	JsonNode guestUser = JSONHandler.<b>fromString</b>(jsonString);
      * </code></pre>
      *
      * @param jsonString the json string
@@ -312,7 +310,7 @@ public final class JSONHandler {
                 if (rs.getObject(i) != null && rs.getObject(i) != EMPTY_STRING) {
                     if (rs.getMetaData().getColumnType(i) == 93)
                         object.put(rs.getMetaData().getColumnLabel(i),
-                                DateUtil.timestampToString(new Date(rs.getTimestamp(i).getTime())));
+                                DateTimeUtil.timestampToString(new Date(rs.getTimestamp(i).getTime())));
                     else
                         object.set(rs.getMetaData().getColumnLabel(i),
                                 OBJ_MAPPER.convertValue(rs.getObject(i), JsonNode.class));

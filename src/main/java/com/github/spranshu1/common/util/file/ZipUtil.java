@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -31,7 +30,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * The type Zip util.
  */
-public class ZipUtil {
+public final class ZipUtil {
 
     /** The constant logger */
     private static final Logger log = LoggerFactory.getLogger(ZipUtil.class);
@@ -70,6 +69,7 @@ public class ZipUtil {
      * @throws IOException the io exception
      */
     private static boolean zipDirectory(final File sourceFile, final String zippedFile) throws IOException {
+        boolean isZipped = false;
         try (FileOutputStream fos = new FileOutputStream(zippedFile, false);
              ZipOutputStream zos = new ZipOutputStream(fos)
         ) {
@@ -87,11 +87,12 @@ public class ZipUtil {
                 zos.closeEntry();
                 fis.close();
             }
+            isZipped = true;
         } catch (IOException e) {
             log.error(Messages.ERR_DIR_ZIP, e);
             throw e;
         }
-        return true;
+        return isZipped;
     }
 
     /**
@@ -150,6 +151,7 @@ public class ZipUtil {
      * @throws IOException the io exception
      */
     private static boolean zipSingleFile(File sourceFile, String zippedFile) throws IOException {
+        boolean isZipped = false;
         try (FileOutputStream fos = new FileOutputStream(zippedFile);
              ZipOutputStream zos = new ZipOutputStream(fos);
              FileInputStream fis = new FileInputStream(sourceFile)) {
@@ -162,12 +164,13 @@ public class ZipUtil {
                 zos.write(buffer, 0, len);
             }
             zos.closeEntry();
+            isZipped = true;
         } catch (IOException e) {
             log.error(Messages.ERR_DIR_ZIP, e);
             log.error(Messages.ERR_FILE_ZIP);
             throw e;
         }
-        return true;
+        return isZipped;
     }
 
 

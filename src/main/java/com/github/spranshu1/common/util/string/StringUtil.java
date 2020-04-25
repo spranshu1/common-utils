@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * The Class StringUtils.
  */
-public class StringUtil {
+public final class StringUtil {
 
     /**
      * Checks if the given String field is null or empty (or contains only spaces).
@@ -63,7 +63,7 @@ public class StringUtil {
      * @param str the {@code CharSequence} to check (may be {@code null})
      * @return {@code true} if the {@code CharSequence} is not {@code null} and has length
      */
-    public static boolean hasLength(CharSequence str) {
+    public static boolean hasLength(final CharSequence str) {
         return (str != null && str.length() > 0);
     }
 
@@ -125,7 +125,7 @@ public class StringUtil {
      * @param msg the msg
      * @return true, if successful
      */
-    public static boolean endsWithSeparator(String msg) {
+    public static boolean endsWithSeparator(final String msg) {
         return (msg.endsWith(":") || msg.endsWith(";") || msg.endsWith(",") || msg.endsWith("."));
     }
 

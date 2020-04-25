@@ -17,7 +17,8 @@
  */
 package com.github.spranshu1.common.util.test.json;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 public class JSONHandlerTest {
 
