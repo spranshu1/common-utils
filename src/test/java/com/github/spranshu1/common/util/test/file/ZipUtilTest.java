@@ -19,18 +19,18 @@ import java.util.List;
 /**
  * The type Zip util test.
  */
-@EnabledOnOs(OS.WINDOWS)
+@DisabledOnOs(OS.WINDOWS)
 public class ZipUtilTest {
 
     private static final Path resourceDirectory = Paths.get("src","test","resources");
 
     private static final String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
-    private static final String SRC_FILE_PATH = absolutePath + "\\test_data\\dummy.txt";
+    private static final String SRC_FILE_PATH = absolutePath + "/test_data/dummy.txt";
 
-    private static final String SRC_DIR_PATH = absolutePath + "\\test_data";
+    private static final String SRC_DIR_PATH = absolutePath + "/test_data";
 
-    private static final String DESTINATION = absolutePath + "\\test_data\\";
+    private static final String DESTINATION = absolutePath + "/test_data/";
 
     /**
      * Cleanup.
@@ -56,7 +56,7 @@ public class ZipUtilTest {
      */
     @Test
     public void testFileZip() throws IOException {
-        boolean result = ZipUtil.zip(SRC_FILE_PATH,DESTINATION+"\\dummy.zip");
+        boolean result = ZipUtil.zip(SRC_FILE_PATH,DESTINATION+"/dummy.zip");
         Assertions.assertTrue(result);
     }
 
@@ -67,7 +67,7 @@ public class ZipUtilTest {
      */
     @Test
     public void testDirZip() throws IOException {
-        boolean result = ZipUtil.zip(SRC_DIR_PATH,absolutePath+"\\test_data.zip");
+        boolean result = ZipUtil.zip(SRC_DIR_PATH,absolutePath+"/test_data.zip");
         Assertions.assertTrue(result);
     }
 
@@ -83,7 +83,7 @@ public class ZipUtilTest {
         InputStream is = new FileInputStream(SRC_FILE_PATH);
         lis.add(is);
 
-        ZipUtil.zipStream(lis,DESTINATION+"\\stream.zip");
+        ZipUtil.zipStream(lis,DESTINATION+"/stream.zip");
     }
 
 }
