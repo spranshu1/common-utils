@@ -106,8 +106,8 @@ public final class HexUtil {
     /**
      * Returns the number from 0 to 15 corresponding to the hex digit <i>character</i>.
      *
-     * @param char the character
-     * @return int integer value
+     * @param character the character
+     * @return int int
      */
     public static int fromDigit(char character) {
         if ((character >= '0') && (character <= '9'))
