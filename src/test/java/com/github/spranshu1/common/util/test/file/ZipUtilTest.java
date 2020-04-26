@@ -4,10 +4,10 @@ package com.github.spranshu1.common.util.test.file;
 import com.github.spranshu1.common.util.file.ZipUtil;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledOnOs;
-import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -37,7 +37,7 @@ public class ZipUtilTest {
      *
      * @throws IOException the io exception
      */
-    @AfterEach
+    @AfterAll
     public static void cleanup() throws IOException {
         Path file1 = Paths.get("src/test/resources/test_data/dummy.zip");
         Path file2 = Paths.get("src/test/resources/test_data.zip");
@@ -84,6 +84,32 @@ public class ZipUtilTest {
         lis.add(is);
 
         ZipUtil.zipStream(lis,DESTINATION+"/stream.zip");
+    }
+
+    /**
+     * Test file zip negative case.
+     */
+    @Test
+    public void testFileZipNeg() {
+        Assertions.assertThrows(FileNotFoundException.class,() -> ZipUtil.zip(SRC_FILE_PATH,DESTINATION),"Expecting Error");
+    }
+
+    /**
+     * Test dir zip neg.
+     */
+    @Test
+    public void testDirZipNeg(){
+        Assertions.assertThrows(FileNotFoundException.class,() -> ZipUtil.zip(SRC_DIR_PATH+"/",DESTINATION),"Expecting Error");
+    }
+
+    /**
+     * Test unzip.
+     *
+     * @throws IOException the io exception
+     */
+    @Test
+    public void testUnzip() throws IOException {
+        ZipUtil.unzip(SRC_DIR_PATH+"/unzipme.zip",DESTINATION+"unzipme");
     }
 
 }
