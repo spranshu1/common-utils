@@ -20,7 +20,7 @@ jobs:
     - name: Upload coverage
       uses: codacy/codacy-coverage-reporter-action@master
       with:
-        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}      
+        project-token: fb35a1398997420e8f6c7e0da9219b02     
       #run: mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/jacoco-ut/jacoco.xml -DprojectToken=${{ secrets.CODACY_PROJECT_TOKEN }} -DapiToken=${{ secrets.CODACY_API_TOKEN }}
        
       
