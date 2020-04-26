@@ -1,4 +1,7 @@
 ## Common Utils
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d2741fb7558140b2993bb66dc4df9239)](https://www.codacy.com/manual/pranshushrivastava20/common-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=spranshu1/common-util&amp;utm_campaign=Badge_Grade)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d2741fb7558140b2993bb66dc4df9239)](https://www.codacy.com/manual/pranshushrivastava20/common-util?utm_source=github.com&utm_medium=referral&utm_content=spranshu1/common-util&utm_campaign=Badge_Coverage)
 
 A small java project holding various utility classes to reduce development effort. 
 
