@@ -36,7 +36,7 @@ public final class HexUtil {
      * @param ba     the ba
      * @param offset the offset
      * @param length the length
-     * @return string
+     * @return string string
      */
     public static String toString(final byte[] ba, final int offset, final int length) {
         char[] buf = new char[length * 2];
@@ -74,7 +74,8 @@ public final class HexUtil {
     public static byte[] fromString(final String hex) {
         int len = hex.length();
         byte[] buf = new byte[((len + 1) / 2)];
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
         if ((len % 2) == 1) {
             buf[j++] = (byte) fromDigit(hex.charAt(i++));
         }
@@ -91,7 +92,7 @@ public final class HexUtil {
      * Returns the hex digit corresponding to a number <i>n</i>, from 0 to 15.
      *
      * @param n the n
-     * @return char
+     * @return char char
      */
     public static char toDigit(int n) {
         try {
@@ -103,19 +104,19 @@ public final class HexUtil {
     }
 
     /**
-     * Returns the number from 0 to 15 corresponding to the hex digit <i>ch</i>.
+     * Returns the number from 0 to 15 corresponding to the hex digit <i>character</i>.
      *
-     * @param ch the ch
-     * @return int
+     * @param char the character
+     * @return int integer value
      */
-    public static int fromDigit(char ch) {
-        if ((ch >= '0') && (ch <= '9'))
-            return ch - '0';
-        if ((ch >= 'A') && (ch <= 'F'))
-            return ch - 'A' + 10;
-        if ((ch >= 'a') && (ch <= 'f'))
-            return ch = 'a' + 10;
+    public static int fromDigit(char character) {
+        if ((character >= '0') && (character <= '9'))
+            return character - '0';
+        if ((character >= 'A') && (character <= 'F'))
+            return character - 'A' + 10;
+        if ((character >= 'a') && (character <= 'f'))
+            return character = 'a' + 10;
 
-        throw new IllegalArgumentException("invalid hex digit '" + ch + "'");
+        throw new IllegalArgumentException("invalid hex digit '" + character + "'");
     }
 }
