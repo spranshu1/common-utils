@@ -12,7 +12,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Test with Maven
-        run: mvn -B test --file pom.xml
+        run: mvn -B test
       - uses: actions/checkout@master
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
