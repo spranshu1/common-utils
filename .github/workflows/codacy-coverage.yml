@@ -18,7 +18,10 @@ jobs:
     - name: Test with Maven
       run: mvn -B test --file pom.xml
     - name: Upload coverage
-      run: mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/jacoco-ut/jacoco.xml -DprojectToken=${{ secrets.CODACY_PROJECT_TOKEN }} -DapiToken=${{ secrets.CODACY_API_TOKEN }}
+      uses: codacy/codacy-coverage-reporter-action@master
+      with:
+        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}      
+      #run: mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/jacoco-ut/jacoco.xml -DprojectToken=${{ secrets.CODACY_PROJECT_TOKEN }} -DapiToken=${{ secrets.CODACY_API_TOKEN }}
        
       
         
