@@ -4,6 +4,7 @@ A small java project holding various utility classes to reduce development effor
 
 ## Target Version
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0d62e2d016be45dcb86547b8e9594313)](https://app.codacy.com/manual/pranshushrivastava20/common-util?utm_source=github.com&utm_medium=referral&utm_content=spranshu1/common-util&utm_campaign=Badge_Grade_Settings)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.spranshu1.common.util/common-utils.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.spranshu1.common.util%22%20AND%20a:%22common-utils%22)
 
 Getting started:
