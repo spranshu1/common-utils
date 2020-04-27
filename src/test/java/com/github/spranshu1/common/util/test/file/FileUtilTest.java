@@ -52,5 +52,5 @@ public class FileUtilTest {
         Assertions.assertEquals(absolutePath+"/test_data/dummy.txt",path);
     }
 
-    
+
 }
