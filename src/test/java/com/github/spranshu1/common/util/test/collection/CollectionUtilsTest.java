@@ -158,4 +158,40 @@ public class CollectionUtilsTest {
         Assertions.assertTrue(result);
     }
 
+    @Test
+    @DisplayName("Check collection contains any value from another collection")
+    public void testContainsAny(){
+        Set<String> source = new HashSet<>();
+        source.add("one");
+        source.add("two");
+
+        List<String> candidate = new ArrayList<>();
+        candidate.add("two");
+        candidate.add("three");
+
+        boolean result = CollectionUtil.containsAny(source,candidate);
+
+        Assertions.assertTrue(result);
+    }
+
+
+    @Test
+    @DisplayName("Find first match")
+    public void testFindFirstMatch(){
+        Set<String> source = new HashSet<>();
+        source.add("one");
+        source.add("two");
+        source.add("three");
+
+        List<String> candidate = new ArrayList<>();
+        candidate.add("two");
+        candidate.add("three");
+
+        String result = CollectionUtil.findFirstMatch(source,candidate);
+
+        Assertions.assertEquals("two",result);
+    }
+
+
+
 }

@@ -21,10 +21,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.spranshu1.common.util.date.DateTimeUtil;
 import org.slf4j.Logger;
@@ -320,5 +322,44 @@ public final class JSONHandler {
         }
         return jsonArray;
     }
+
+    /**
+     * Creates an {@link ObjectNode} instance
+     *
+     * @return the object node
+     */
+    public static ObjectNode createNode() {
+        return OBJ_MAPPER.createObjectNode();
+    }
+
+    /**
+     * Creates an {@link ArrayNode} instance
+     *
+     * @return the array node
+     */
+    public static ArrayNode createArray() {
+        return OBJ_MAPPER.createArrayNode();
+    }
+
+    /**
+     * Creates an {@link ObjectNode} from object.Make sure the object is POJO
+     *
+     * @param obj the obj
+     * @return the object node
+     */
+    public static ObjectNode readPojoToNode(Object obj) {
+        return OBJ_MAPPER.valueToTree(obj);
+    }
+
+    /**
+     * Creates a {@link TreeNode} from object.Make sure the object is a POJO
+     *
+     * @param obj the obj
+     * @return the tree node
+     */
+    public static TreeNode readPojoToTreeNode(Object obj) {
+        return OBJ_MAPPER.valueToTree(obj);
+    }
+
 
 }
