@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Generic Serializer/Deserializer class.
  *
- * @param <T> the type of the concerned object which is to be serialized or to be deserialized to. Use builder to create instance.
+ * @param <T> the type of the concerned object which is to be serialized or to be de-serialized to. Use builder to create instance.
  */
 public class JsonParser<T> {
     private static final Logger log = LoggerFactory.getLogger(JsonParser.class);
