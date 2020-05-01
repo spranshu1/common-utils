@@ -22,7 +22,7 @@ package com.github.spranshu1.common.util;
  * to user.
  * <p>Mainly for internal use within the framework.
  */
-public class Messages {
+public final class Messages {
 
     /**
      * The constant ERR_FILE_READ.

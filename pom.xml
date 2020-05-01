@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.spranshu1.common.util</groupId>
     <artifactId>common-utils</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>Common Utils</name>
     <description>A utility project containing common utility and helper methods for the ease of project development
     </description>
@@ -39,7 +39,9 @@
         <jgitflow-maven.version>1.0-m5.1</jgitflow-maven.version>
         <slf4j.version>1.7.5</slf4j.version>
         <jackson.version>2.9.10.3</jackson.version>
-        <junit.version>5.5.2</junit.version>
+        <junit.version>4.12</junit.version>
+        <jacoco-maven.version>0.8.0</jacoco-maven.version>
+        <surefire-report.version>3.0.0-M4</surefire-report.version>
     </properties>
 
     <dependencies>
@@ -59,12 +61,26 @@
             <version>${slf4j.version}</version>
         </dependency>
         <!-- JUnit -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <!-- Distribution management for maven centrals -->
@@ -144,6 +160,40 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Jacoco Report -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>target/jacoco.exec</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>target/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- For managing release - Jgitflow -->
             <plugin>
@@ -173,6 +223,8 @@
                     <scmCommentPrefix>[RELEASE]</scmCommentPrefix>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
+
 </project>

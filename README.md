@@ -1,4 +1,5 @@
 ## Common Utils
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d2741fb7558140b2993bb66dc4df9239)](https://www.codacy.com/manual/pranshushrivastava20/common-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=spranshu1/common-util&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d2741fb7558140b2993bb66dc4df9239)](https://www.codacy.com/manual/pranshushrivastava20/common-util?utm_source=github.com&utm_medium=referral&utm_content=spranshu1/common-util&utm_campaign=Badge_Coverage) ![codacy-coverage](https://github.com/spranshu1/common-util/workflows/codacy-coverage/badge.svg)
 
 A small java project holding various utility classes to reduce development effort. 
 
@@ -38,19 +39,27 @@ Ensure local installation of following softwares/tools:
 	<dependency>
       <groupId>com.github.spranshu1.common.util</groupId>
       <artifactId>common-utils</artifactId>
-      <version>1.0.2</version>
+      <version>${version}</version>
     </dependency>
 	
 	```
 ### Gradle Groovy DSL
 
-* ```implementation 'com.github.spranshu1.common.util:common-utils:1.0.1' ```
+* ```implementation 'com.github.spranshu1.common.util:common-utils:[<version>]' ```
 
 ### Gradle Kotlin DSL
 
-* ```implementation("com.github.spranshu1.common.util:common-utils:1.0.1") ```
+* ```implementation("com.github.spranshu1.common.util:common-utils:[<version>]") ```
 
 ## Release Log
+
+`1.0.3`
+
+- **Updates**:
+	- Introduced `JsonParser` a generic Serializer/Deserializer utility for parsing Json.
+	- Code quality improvements	    
+- **Fixes**:
+	- Minor code smells
 
 `1.0.2`
 

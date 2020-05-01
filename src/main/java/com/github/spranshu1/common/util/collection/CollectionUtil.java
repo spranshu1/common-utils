@@ -193,7 +193,7 @@ public final class CollectionUtil {
     public static boolean containsInstance(Collection<?> collection, Object element) {
         if (collection != null) {
             for (Object candidate : collection) {
-                if (candidate == element) {
+                if (candidate == element || candidate.equals(element)) {
                     return true;
                 }
             }
