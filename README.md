@@ -56,9 +56,10 @@ Ensure local installation of following softwares/tools:
 `1.0.3`
 
 - **Updates**:
-	- Introduced `JsonParser` a generic Serializer/Deserializer utility for parsing Json.	    
+	- Introduced `JsonParser` a generic Serializer/Deserializer utility for parsing Json.
+	- Code quality improvements	    
 - **Fixes**:
-	- Minor code smells, improving performance and code quality
+	- Minor code smells
 
 `1.0.2`
 
