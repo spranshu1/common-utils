@@ -22,7 +22,7 @@ public class FileUtilTest {
 
     private static final String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
-    private static final String SLASH = "\\";
+    private static final String SLASH = "/";
 
     /**
      * Test get file name.
