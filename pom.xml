@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.spranshu1.common.util</groupId>
     <artifactId>common-utils</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <name>Common Utils</name>
     <description>A utility project containing common utility and helper methods for the ease of project development
     </description>
