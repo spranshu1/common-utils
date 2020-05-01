@@ -18,9 +18,9 @@
 package com.github.spranshu1.common.util.test.collection;
 
 import com.github.spranshu1.common.util.collection.CollectionUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
+
 
 import java.util.*;
 import java.util.function.Function;
@@ -52,7 +52,6 @@ public class CollectionUtilsTest {
      * Test convert list.
      */
     @Test
-    @DisplayName("Convert list to another list")
     public void testConvertList() {
         List<String> strings = new ArrayList<>();
         strings.add("1");
@@ -61,51 +60,47 @@ public class CollectionUtilsTest {
 
         List<Integer> numbers = CollectionUtil.convertList(strings, strToInt);
 
-        Assertions.assertNotNull(numbers, "Unable to convert given list");
+        Assert.assertNotNull("Unable to convert given list",numbers);
     }
 
     /**
      * Tes list is empty.
      */
     @Test
-    @DisplayName("Check if list is empty")
     public void tesListIsEmpty() {
         List<String> strings = new ArrayList<>();
 
-        Assertions.assertTrue(CollectionUtil.listIsEmpty(strings));
+        Assert.assertTrue(CollectionUtil.listIsEmpty(strings));
     }
 
     /**
      * Tes list is not empty.
      */
     @Test
-    @DisplayName("Check if list is not empty")
     public void tesListIsNotEmpty() {
         List<String> strings = new ArrayList<>();
         strings.add("1");
         strings.add("13");
         strings.add("15");
-        Assertions.assertTrue(CollectionUtil.listIsNotEmpty(strings));
+        Assert.assertTrue(CollectionUtil.listIsNotEmpty(strings));
     }
 
     /**
      * Test collection is empty.
      */
     @Test
-    @DisplayName("Check if given collection is empty")
     public void testCollectionIsEmpty() {
         List<String> strings = new ArrayList<>();
         Set<String> data = new HashSet<>();
 
-        Assertions.assertTrue(CollectionUtil.isEmpty(strings));
-        Assertions.assertTrue(CollectionUtil.isEmpty(data));
+        Assert.assertTrue(CollectionUtil.isEmpty(strings));
+        Assert.assertTrue(CollectionUtil.isEmpty(data));
     }
 
     /**
      * Test array to list.
      */
     @Test
-    @DisplayName("Convert array to list")
     public void testArrayToList() {
         Object[] obj = new Object[3];
         obj[0] = "first";
@@ -115,12 +110,14 @@ public class CollectionUtilsTest {
 
         Predicate<List> check = x -> x.size() == 3;
 
-        Assertions.assertNotNull(list);
-        Assertions.assertTrue(check.test(list));
+        Assert.assertNotNull(list);
+        Assert.assertTrue(check.test(list));
     }
 
+    /**
+     * Test merge array to collection.
+     */
     @Test
-    @DisplayName("Merge array to collection")
     public void testMergeArrayToCollection() {
         int[] arr = new int[3];
         arr[0] = 1;
@@ -131,11 +128,13 @@ public class CollectionUtilsTest {
 
         CollectionUtil.mergeArrayIntoCollection(arr, data);
         Predicate<Set> check = x -> x.size() == 3;
-        Assertions.assertTrue(check.test(data));
+        Assert.assertTrue(check.test(data));
     }
 
+    /**
+     * Test merge property map.
+     */
     @Test
-    @DisplayName("Merge properties into map")
     public void testMergePropertyMap(){
         Properties prop = new Properties(System.getProperties());
 
@@ -145,21 +144,25 @@ public class CollectionUtilsTest {
 
         Predicate<Map<String, String>> check = x -> x.containsKey("java.specification.version");
 
-        Assertions.assertTrue(check.test(data));
+        Assert.assertTrue(check.test(data));
     }
 
+    /**
+     * Test contains instance.
+     */
     @Test
-    @DisplayName("Check collection contains given instance")
     public void testContainsInstance(){
         Set<String> data = new HashSet<>();
         data.add("test");
         boolean result = CollectionUtil.containsInstance(data,"test");
 
-        Assertions.assertTrue(result);
+        Assert.assertTrue(result);
     }
 
+    /**
+     * Test contains any.
+     */
     @Test
-    @DisplayName("Check collection contains any value from another collection")
     public void testContainsAny(){
         Set<String> source = new HashSet<>();
         source.add("one");
@@ -171,12 +174,14 @@ public class CollectionUtilsTest {
 
         boolean result = CollectionUtil.containsAny(source,candidate);
 
-        Assertions.assertTrue(result);
+        Assert.assertTrue(result);
     }
 
 
+    /**
+     * Test find first match.
+     */
     @Test
-    @DisplayName("Find first match")
     public void testFindFirstMatch(){
         Set<String> source = new HashSet<>();
         source.add("one");
@@ -189,7 +194,7 @@ public class CollectionUtilsTest {
 
         String result = CollectionUtil.findFirstMatch(source,candidate);
 
-        Assertions.assertEquals("two",result);
+        Assert.assertEquals("two",result);
     }
 
 

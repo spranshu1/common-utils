@@ -10,9 +10,8 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.github.spranshu1.common.util.json.JsonParser;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -21,38 +20,51 @@ import java.io.IOException;
  */
 public class JsonParserTest {
 
+    private static final String SAMPLE_JSON = "{\"name\":\"shivansh\",\"email\":\"shiv@domain.com\",\"age\":22}";
+
     /**
      * Sample test.
      */
     @Test
-    @DisplayName("Sample json parser")
     public void sampleTest(){
         JsonParser<JsonNode> parser = new JsonParser.JsonParserBuilder<>(JsonNode.class).build();
         try {
             JsonNode node=parser.readJsonNodeTree("{\"c\":12,\"d\":23}");
-            Assertions.assertEquals(12,node.get("c").intValue(),"Incorrect");
+            Assert.assertEquals("Incorrect",12,node.get("c").intValue());
         } catch (IOException e) {
-            Assertions.fail("Json parsing failed");
+            Assert.fail("Json parsing failed");
         }
     }
 
 
     /**
-     * Serializer and deserializer test.
+     * Serializer test.
      */
     @Test
-    @DisplayName("Parser with Serializer and Deserializer")
-    public void serializerAndDeserializerTest(){
+    public void serializerTest(){
         SimpleModule module = new SimpleModule("MyModule", new Version(1, 0, 0, null, "com.github.spranshu1.common.util",
                 "common-util"));
-        JsonParser<Object> parser = new JsonParser.JsonParserBuilder<>(module)
+        JsonParser<Employee> parser = new JsonParser.JsonParserBuilder<Employee>(module)
                 .withSerializer(Employee.class, new EmpSerializer(Employee.class))
-                .withDeSerializer(Employee.class, new EmpDeSerializer(Employee.class))
                 .build();
 
         ObjectNode obj = parser.readPojoToNode(new Employee("Ravi", "ravi@domain.com", 21));
 
-        Assertions.assertEquals("ravi@domain.com",obj.get("email").asText(),"Incorrect");
+        Assert.assertEquals("Incorrect",obj.get("email").asText(),"ravi@domain.com");
+    }
+
+    /**
+     * De-serializer test.
+     */
+    @Test
+    public void deSerializerTest() throws IOException {
+        JsonParser<Employee> parser = new JsonParser.JsonParserBuilder<>(Employee.class)
+                .withDeSerializer(Employee.class, new EmpDeSerializer(Employee.class))
+                .build();
+
+        Employee obj = parser.getJavaObject(SAMPLE_JSON);
+
+        Assert.assertTrue("shiv@domain.com".equals(obj.email));
     }
 
 

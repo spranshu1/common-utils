@@ -2,9 +2,9 @@ package com.github.spranshu1.common.util.test.file;
 
 
 import com.github.spranshu1.common.util.file.ZipUtil;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.DisabledOnOs;
-import org.junit.jupiter.api.condition.OS;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,7 +19,6 @@ import java.util.List;
 /**
  * The type Zip util test.
  */
-@DisabledOnOs(OS.WINDOWS)
 public class ZipUtilTest {
 
     private static final Path resourceDirectory = Paths.get("src","test","resources");
@@ -37,7 +36,7 @@ public class ZipUtilTest {
      *
      * @throws IOException the io exception
      */
-    @AfterAll
+    @AfterClass
     public static void cleanup() throws IOException {
         Path file1 = Paths.get("src/test/resources/test_data/dummy.zip");
         Path file2 = Paths.get("src/test/resources/test_data.zip");
@@ -57,7 +56,7 @@ public class ZipUtilTest {
     @Test
     public void testFileZip() throws IOException {
         boolean result = ZipUtil.zip(SRC_FILE_PATH,DESTINATION+"/dummy.zip");
-        Assertions.assertTrue(result);
+        Assert.assertTrue(result);
     }
 
     /**
@@ -68,7 +67,7 @@ public class ZipUtilTest {
     @Test
     public void testDirZip() throws IOException {
         boolean result = ZipUtil.zip(SRC_DIR_PATH,absolutePath+"/test_data.zip");
-        Assertions.assertTrue(result);
+        Assert.assertTrue(result);
     }
 
     /**
@@ -89,17 +88,19 @@ public class ZipUtilTest {
     /**
      * Test file zip negative case.
      */
-    @Test
-    public void testFileZipNeg() {
-        Assertions.assertThrows(FileNotFoundException.class,() -> ZipUtil.zip(SRC_FILE_PATH,DESTINATION),"Expecting Error");
+    @Test(expected = FileNotFoundException.class)
+    public void testFileZipNeg() throws IOException {
+
+        ZipUtil.zip(SRC_FILE_PATH,DESTINATION);
+
     }
 
     /**
      * Test dir zip neg.
      */
-    @Test
-    public void testDirZipNeg(){
-        Assertions.assertThrows(FileNotFoundException.class,() -> ZipUtil.zip(SRC_DIR_PATH+"/",DESTINATION),"Expecting Error");
+    @Test(expected = FileNotFoundException.class)
+    public void testDirZipNeg() throws IOException {
+        ZipUtil.zip(SRC_DIR_PATH+"/",DESTINATION);
     }
 
     /**

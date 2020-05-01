@@ -1,14 +1,12 @@
 package com.github.spranshu1.common.util.test.file;
 
 import com.github.spranshu1.common.util.file.FileUtil;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledOnOs;
-import org.junit.jupiter.api.condition.OS;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -24,6 +22,7 @@ public class FileUtilTest {
 
     private static final String absolutePath = resourceDirectory.toFile().getAbsolutePath();
 
+    private static final String SLASH = "\\";
 
     /**
      * Test get file name.
@@ -31,10 +30,9 @@ public class FileUtilTest {
      * @throws FileNotFoundException the file not found exception
      */
     @Test
-    @DisplayName("Get File Name Test")
     public void testGetFileName() throws FileNotFoundException {
-        final String fileName = FileUtil.getFileName(absolutePath+"/test_data/dummy.txt");
-        Assertions.assertEquals("dummy.txt",fileName,"Filename does not match");
+        final String fileName = FileUtil.getFileName(absolutePath+SLASH+"test_data"+SLASH+"dummy.txt");
+        Assert.assertEquals("Filename does not match",fileName,"dummy.txt");
     }
 
     /**
@@ -44,12 +42,29 @@ public class FileUtilTest {
      * @throws URISyntaxException    the uri syntax exception
      */
     @Test
-    @DisplayName("Absolute path test")
-    @DisabledOnOs(OS.WINDOWS)
     public void testAbsolutePath() throws MalformedURLException, URISyntaxException {
-        URL url = new File(absolutePath+"/test_data/dummy.txt").toURL();
+        URL url = new File(absolutePath+SLASH+"test_data"+SLASH+"dummy.txt").toURL();
         final String path = FileUtil.getAbsolutePath(url);
-        Assertions.assertEquals(absolutePath+"/test_data/dummy.txt",path);
+        Assert.assertEquals(absolutePath+SLASH+"test_data"+SLASH+"dummy.txt",path);
+    }
+
+    @Test
+    public void testFileExist(){
+        boolean result = FileUtil.fileExist(absolutePath+SLASH+"test_data"+SLASH+"dummy.txt");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void testFileExtension(){
+        String ext = FileUtil.getFileExtension(absolutePath+SLASH+"test_data"+SLASH+"dummy.txt");
+        Assert.assertEquals(".txt",ext);
+    }
+
+    @Test
+    public void testIsSymLink() throws IOException {
+        File file = new File(absolutePath+SLASH+"test_data"+SLASH+"dummy.txt");
+        boolean isSymLink = FileUtil.isSymlink(file);
+        Assert.assertFalse(isSymLink);
     }
 
 
