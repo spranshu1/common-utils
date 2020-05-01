@@ -56,13 +56,10 @@ Ensure local installation of following softwares/tools:
 `1.0.3`
 
 - **Updates**:
-	- Below utilities are now available
-	    - ZipUtil
-	    - HexUtil
-	    - FileUtil
-	- `JSONHandler` now support creating JSON from ResultSet Object	    
+	- Introduced `JsonParser` a generic Serializer/Deserializer utility for parsing Json.
+	- Code quality improvements	    
 - **Fixes**:
-	- none
+	- Minor code smells
 
 `1.0.2`
 

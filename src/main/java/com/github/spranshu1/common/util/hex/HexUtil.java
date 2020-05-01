@@ -115,7 +115,7 @@ public final class HexUtil {
         if ((character >= 'A') && (character <= 'F'))
             return character - 'A' + 10;
         if ((character >= 'a') && (character <= 'f'))
-            return character = 'a' + 10;
+            return 'a' + 10;
 
         throw new IllegalArgumentException("invalid hex digit '" + character + "'");
     }
