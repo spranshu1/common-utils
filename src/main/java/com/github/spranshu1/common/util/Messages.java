@@ -64,4 +64,9 @@ public final class Messages {
      * The constant ERR_FILE_NULL.
      */
     public static final String ERR_FILE_NULL = "File must not be null";
+
+    /**
+     * The constant ERR_FILE_WRITE.
+     */
+    public static final String ERR_FILE_WRITE = "Error writing data to file";
 }

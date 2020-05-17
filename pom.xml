@@ -6,7 +6,7 @@
     <name>Common Utils</name>
     <description>A utility project containing common utility and helper methods for the ease of project development
     </description>
-    <url>https://github.com/spranshu1/common-util</url>
+    <url>https://github.com/spranshu1/common-utils</url>
 
     <!-- Lisense -->
     <licenses>
@@ -22,15 +22,15 @@
             <name>Pranshu Shrivastava</name>
             <email>pranshushrivastava20@gmail.com</email>
             <organization>com.github.spranshu1.common.util</organization>
-            <organizationUrl>https://github.com/spranshu1/common-util</organizationUrl>
+            <organizationUrl>https://github.com/spranshu1/common-utils</organizationUrl>
         </developer>
     </developers>
 
     <!-- Source Code Management -->
     <scm>
-        <connection>scm:git:git://github.com/spranshu1/common-util.git</connection>
-        <developerConnection>scm:git:ssh://github.com:spranshu1/common-util.git</developerConnection>
-        <url>http://github.com/spranshu1/common-util/tree/master</url>
+        <connection>scm:git:git://github.com/spranshu1/common-utils.git</connection>
+        <developerConnection>scm:git:ssh://github.com:spranshu1/common-utils.git</developerConnection>
+        <url>http://github.com/spranshu1/common-utils/tree/master</url>
     </scm>
 
     <properties>

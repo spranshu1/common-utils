@@ -156,7 +156,7 @@ public final class StringUtil {
      */
     public static boolean isNumeric(final String str) {
 
-        if (str == null || str.length() == 0) {
+        if (strFieldIsEmpty(str)) {
             return false;
         }
 

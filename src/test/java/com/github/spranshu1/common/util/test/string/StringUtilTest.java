@@ -43,6 +43,16 @@ public class StringUtilTest {
     }
 
     /**
+     * Test has length negative.
+     */
+    @Test
+    public void testHasLengthNEG(){
+        String field = null;
+        boolean hasLength = StringUtil.hasLength(field);
+        Assert.assertFalse(hasLength);
+    }
+
+    /**
      * Test equals.
      */
     @Test
@@ -65,7 +75,7 @@ public class StringUtilTest {
     }
 
     /**
-     * Test match against regex lov.
+     * Test match against regex  list of values.
      */
     @Test
     public void testMatchAgainstRegexLOV(){
@@ -73,6 +83,63 @@ public class StringUtilTest {
         List<String> listOfRegex = Arrays.asList("[a-h]","[a-z]","^[a-zA-Z0-9 ]*$");
         boolean isMatch = StringUtil.matchAgainstRegexLOV(field,listOfRegex);
         Assert.assertTrue("Not a match",isMatch);
+    }
+
+    /**
+     * Test match against regex list of values negative 1.
+     */
+    @Test
+    public void testMatchAgainstRegexLOVNEG(){
+        String field = "";
+        List<String> listOfRegex = Arrays.asList("[a-h]","[a-z]","^[a-zA-Z0-9 ]*$");
+        boolean isMatch = StringUtil.matchAgainstRegexLOV(field,listOfRegex);
+        Assert.assertFalse("It's a match",isMatch);
+    }
+
+    /**
+     * Test match against regex list of values negative 2.
+     */
+    @Test
+    public void testMatchAgainstRegexLOVNEG2(){
+        String field = "lorem ipsum 123";
+        List<String> listOfRegex = Arrays.asList("[a-h]","[a-z]");
+        boolean isMatch = StringUtil.matchAgainstRegexLOV(field,listOfRegex);
+        Assert.assertFalse("It's a match",isMatch);
+    }
+
+    /**
+     * Test end with seperator.
+     */
+    @Test
+    public void testEndWithSeperator(){
+        String msg = "lorem ipsum.";
+        boolean result = StringUtil.endsWithSeparator(msg);
+        Assert.assertTrue(result);
+    }
+
+    /**
+     * Test message with type name.
+     */
+    @Test
+    public void testMessageWithTypeName(){
+        String result = StringUtil.messageWithTypeName("lorem ipsum","String");
+        Assert.assertEquals("lorem ipsum: String",result);
+    }
+
+    /**
+     * Test is numeric.
+     */
+    @Test
+    public void testIsNumeric(){
+        Assert.assertTrue(StringUtil.isNumeric("564"));
+    }
+
+    /**
+     * Test is numeric neg.
+     */
+    @Test
+    public void testIsNumericNEG(){
+        Assert.assertFalse(StringUtil.isNumeric(null));
     }
 
 }

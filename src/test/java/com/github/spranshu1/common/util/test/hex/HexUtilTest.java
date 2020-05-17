@@ -25,6 +25,42 @@ public class HexUtilTest {
         Assert.assertTrue(dump.matches(pattern.toString()));
     }
 
+    /**
+     * Test from string.
+     */
+    @Test
+    public void testFromString(){
+        String hex = "D5CF";
+        byte[] actual = HexUtil.fromString(hex);
+
+        Assert.assertNotNull(actual);
+    }
+
+    /**
+     * Test from digit.
+     */
+    @Test
+    public void testFromDigit(){
+        int result = HexUtil.fromDigit('A');
+        Assert.assertEquals(10,result);
+    }
+
+    /**
+     * Test to digit.
+     */
+    @Test
+    public void testToDigit(){
+       char ch = HexUtil.toDigit(10);
+       Assert.assertEquals('A',ch);
+    }
+
+    /**
+     * Test to digit neg.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testToDigitNEG(){
+        char ch = HexUtil.toDigit(20);
+    }
 
 
 }

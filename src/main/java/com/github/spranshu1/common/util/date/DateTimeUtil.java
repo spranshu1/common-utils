@@ -25,8 +25,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,22 +47,22 @@ public final class DateTimeUtil {
     /**
      * The constant for Timestamp format object
      */
-    private static final DateFormat TF = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    private static final DateTimeFormatter TF = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
     /**
      * The Constant for DateFormat object.
      */
-    private static final DateFormat DF = new SimpleDateFormat("yyyy-MM-dd");
+    private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * The Constant for ISO DateFormat object.
      */
-    private static final DateFormat isoDF = new SimpleDateFormat(ISO_DATE_FMT);
+    private static final DateTimeFormatter isoDF = DateTimeFormatter.ofPattern(ISO_DATE_FMT);
 
     static {
-        isoDF.setTimeZone(TimeZone.getTimeZone("UTC"));
-        DF.setTimeZone(TimeZone.getTimeZone("UTC"));
-        TF.setTimeZone(TimeZone.getTimeZone("UTC"));
+        isoDF.withZone(ZoneOffset.UTC);
+        DF.withZone(ZoneId.systemDefault());
+        TF.withZone(ZoneId.systemDefault());
     }
 
 
@@ -105,12 +104,12 @@ public final class DateTimeUtil {
      * Example,
      * <pre><code>
      * 	//Convert String to LocalDateTime
-     * 	LocalDateTime result = DateTimeUtil.<b>stringToLocalDateTime</b>("10/06/2020", "dd/mm/uuuu");
+     * 	LocalDateTime result = DateTimeUtil.<b>stringToLocalDateTime</b>("2016-03-04 11:30:40", "yyyy-MM-dd HH:mm:ss");
      * </code></pre>
      *
      * @param dateTime the date time string
      * @param format   the format
-     * @return the parsed {@link LocalDateTime} time
+     * @return the parsed {@link LocalDateTime}
      */
     public static LocalDateTime stringToLocalDateTime(final String dateTime, final String format) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
@@ -119,24 +118,15 @@ public final class DateTimeUtil {
 
 
     /**
-     * Converts given String field 'dtField' to a Date object, using given date format 'dtFormat'.
+     * Converts given String field 'dtField' to a {@link LocalDate} object, using given date format 'dtFormat'.
      *
      * @param dtField  String field which is to be converted to Date object
      * @param dtFormat String representing expected date pattern (as per SimpleDateFormat class)
-     * @return Date - if given String can be converted to Date object without exception,
-     * null - otherwise.
+     * @return the parsed {@link LocalDate}
      */
-    public static Date stringToDate(final String dtField, final String dtFormat) {
-        Date retDate = null;
-        final SimpleDateFormat fmt = new SimpleDateFormat(dtFormat);
-        fmt.setLenient(false);
-        try {
-            retDate = fmt.parse(dtField);
-        } catch (ParseException e) {
-            logger.info("[{}] not in expected format {}", dtField, dtFormat);
-            return null;
-        }
-        return retDate;
+    public static LocalDate stringToLocalDate(final String dtField, final String dtFormat) {
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dtFormat);
+        return (StringUtil.strFieldIsEmpty(dtField)) ? null : LocalDate.parse(dtField, formatter);
     }
 
     /**
@@ -145,8 +135,8 @@ public final class DateTimeUtil {
      * @param date the date
      * @return the string
      */
-    public static String dateToISOString(final Date date) {
-        return date == null ? null : isoDF.format(date);
+    public static String dateToISOString(final LocalDateTime date) {
+        return date == null ? null : date.format(isoDF);
     }
 
     /**
@@ -155,7 +145,7 @@ public final class DateTimeUtil {
      * @param date the date
      * @return the string
      */
-    public static String dateToString(final Date date) {
+    public static String dateToString(final LocalDate date) {
         return date == null ? null : DF.format(date);
     }
 
@@ -166,7 +156,7 @@ public final class DateTimeUtil {
      * @param date the date
      * @return the string
      */
-    public static String timestampToString(final Date date) {
+    public static String timestampToString(final LocalDate date) {
         return date == null ? null : TF.format(date);
     }
 
@@ -175,21 +165,16 @@ public final class DateTimeUtil {
      * Convert string to date format.
      *
      * @param isoDateStr the iso date str
-     * @return the date
+     * @return the local date
      */
-    public static Date isoStringToDate(final String isoDateStr) {
-        try {
-            return isoDF.parse(isoDateStr);
-        } catch (ParseException e) {
-            return null;
-        }
+    public static LocalDate isoStringToDate(final String isoDateStr) {
+        return LocalDate.parse(isoDateStr,isoDF);
     }
 
     /**
      * Returns the minute part of the given input parameter date.
      *
-     * @param date
-     *            {@link Date}
+     * @param date {@link Date}
      * @return int minute in the date
      */
     public static int getMinute(Date date) {

@@ -68,9 +68,7 @@ public class CollectionUtilsTest {
      */
     @Test
     public void tesListIsEmpty() {
-        List<String> strings = new ArrayList<>();
-
-        Assert.assertTrue(CollectionUtil.listIsEmpty(strings));
+        Assert.assertTrue(CollectionUtil.listIsEmpty(new ArrayList<>()));
     }
 
     /**
@@ -90,11 +88,8 @@ public class CollectionUtilsTest {
      */
     @Test
     public void testCollectionIsEmpty() {
-        List<String> strings = new ArrayList<>();
-        Set<String> data = new HashSet<>();
-
-        Assert.assertTrue(CollectionUtil.isEmpty(strings));
-        Assert.assertTrue(CollectionUtil.isEmpty(data));
+        Assert.assertTrue(CollectionUtil.isEmpty(new ArrayList<>()));
+        Assert.assertTrue(CollectionUtil.isEmpty(new HashSet<>()));
     }
 
     /**
@@ -124,7 +119,7 @@ public class CollectionUtilsTest {
         arr[1] = 2;
         arr[2] = 3;
 
-        Set data = new HashSet();
+        Set<Integer> data = new HashSet<>();
 
         CollectionUtil.mergeArrayIntoCollection(arr, data);
         Predicate<Set> check = x -> x.size() == 3;

@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -66,11 +67,11 @@ public final class JSONHandler {
     /**
      * The number sql types list
      */
-    private static final List<Integer> numberSQLTypes = Arrays.asList(new Integer[]{-6, -5, 2, 4, 5});
+    private static final List<Integer> numberSQLTypes = Arrays.asList(-6, -5, 2, 4, 5);
     /**
      * The decimal sql types list
      */
-    private static final List<Integer> decimalSQLTypes = Arrays.asList(new Integer[]{3, 6, 7, 8});
+    private static final List<Integer> decimalSQLTypes = Arrays.asList(3, 6, 7, 8);
     /**
      * The json factory, used for getting instance of json generator
      */
@@ -136,7 +137,7 @@ public final class JSONHandler {
             if (rs.getMetaData().getColumnType(i) == 93) {
                 Timestamp ts = rs.getTimestamp(i);
                 if (ts != null)
-                    generator.writeObject(DateTimeUtil.timestampToString(new Date(ts.getTime())));
+                    generator.writeObject(DateTimeUtil.timestampToString(LocalDate.ofEpochDay(ts.getTime())));
                 else
                     generator.writeString(EMPTY_STRING);
                 // 91 for date type column
@@ -144,7 +145,7 @@ public final class JSONHandler {
                 Date date = rs.getDate(i);
                 if (date != null)
                     // dateFormat.format(new Date(date.getTime()))
-                    generator.writeObject(DateTimeUtil.dateToString(new Date(date.getTime())));
+                    generator.writeObject(DateTimeUtil.dateToString(LocalDate.ofEpochDay(date.getTime())));
                 else
                     generator.writeString(EMPTY_STRING);
             } else {
@@ -199,7 +200,7 @@ public final class JSONHandler {
      * @return the JSON string, or null in case of exception
      */
     public static String toJson(final Object object) {
-        String payloadJson = null;
+        String payloadJson;
         try {
             payloadJson = OBJ_MAPPER.writeValueAsString(object);
         } catch (Exception ex) {
@@ -312,7 +313,7 @@ public final class JSONHandler {
                 if (rs.getObject(i) != null && rs.getObject(i) != EMPTY_STRING) {
                     if (rs.getMetaData().getColumnType(i) == 93)
                         object.put(rs.getMetaData().getColumnLabel(i),
-                                DateTimeUtil.timestampToString(new Date(rs.getTimestamp(i).getTime())));
+                                DateTimeUtil.timestampToString(LocalDate.ofEpochDay(rs.getTimestamp(i).getTime())));
                     else
                         object.set(rs.getMetaData().getColumnLabel(i),
                                 OBJ_MAPPER.convertValue(rs.getObject(i), JsonNode.class));

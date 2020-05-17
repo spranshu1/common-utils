@@ -18,19 +18,24 @@
 package com.github.spranshu1.common.util.file;
 
 import com.github.spranshu1.common.util.Messages;
+import com.github.spranshu1.common.util.string.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Holds utility methods for handling file related operations
  */
 public final class FileUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(FileUtil.class);
 
     /**
      * Gets filename from filepath.
@@ -114,9 +119,7 @@ public final class FileUtil {
      * </ul>
      *
      * @param file file or directory to delete, must not be {@code null}
-     * @throws NullPointerException  if the directory is {@code null}
-     * @throws FileNotFoundException if the file was not found
-     * @throws IOException           in case deletion is unsuccessful
+     * @throws IOException in case deletion is unsuccessful
      */
     public static void forceDelete(final File file) throws IOException {
         if (file.isDirectory()) {
@@ -138,8 +141,7 @@ public final class FileUtil {
      * Cleans a directory without deleting it.
      *
      * @param directory directory to clean
-     * @throws IOException              in case cleaning is unsuccessful
-     * @throws IllegalArgumentException if {@code directory} does not exist or is not a directory
+     * @throws IOException in case cleaning is unsuccessful
      */
     public static void cleanDirectory(final File directory) throws IOException {
         final File[] files = verifiedListFiles(directory);
@@ -163,8 +165,7 @@ public final class FileUtil {
      * Deletes a directory recursively.
      *
      * @param directory directory to delete
-     * @throws IOException              in case deletion is unsuccessful
-     * @throws IllegalArgumentException if {@code directory} does not exist or is not a directory
+     * @throws IOException in case deletion is unsuccessful
      */
     public static void deleteDirectory(final File directory) throws IOException {
         if (!directory.exists()) {
@@ -210,6 +211,66 @@ public final class FileUtil {
             return true;
         }
     }
+
+    /**
+     * Write data to file
+     *
+     * @param file the file. Must not be NULL
+     * @param data the data
+     * @return the boolean.True on successful write
+     */
+    public static boolean writeFile(final File file,final String data){
+        if(StringUtil.strFieldIsEmpty(data)) {
+            log.error("No data to write");
+            return false;
+        }
+        boolean isSuccess;
+        try(FileWriter fileWriter = new FileWriter(file)){
+            fileWriter.write(data);
+            fileWriter.flush();
+            isSuccess = true;
+        }catch (IOException ex){
+            log.error(Messages.ERR_FILE_WRITE,ex);
+            isSuccess = false;
+        }
+        return isSuccess;
+    }
+
+    /**
+     * Write data to file at specified filePath
+     *
+     * @param filePath the file path. Must not be null
+     * @param data     the data
+     * @return the boolean. True on successful write
+     */
+    public static boolean writeFile(final String filePath,final String data){
+        return writeFile(new File(filePath),data);
+    }
+
+    /**
+     * Copies all bytes from input stream to file.
+     * On return the input stream will be at end of stream.
+     * Existing data will be replaced if file already exist at location.
+     * Fails if target file is a symbolic link.
+     *
+     *
+     * @param file       the file
+     * @param streamData the stream data
+     * @return the boolean. True on successful write
+     */
+    public static boolean writeFile(final File file,final InputStream streamData){
+        boolean isSuccess;
+        try {
+            Files.copy(streamData,file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            isSuccess = true;
+        } catch (IOException ex) {
+            log.error(Messages.ERR_FILE_WRITE,ex);
+            isSuccess = false;
+        }
+        return isSuccess;
+    }
+
+
 
     /**
      * Determines if the specified file is possibly a broken symbolic link.
