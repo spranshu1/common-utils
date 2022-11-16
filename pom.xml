@@ -38,7 +38,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jgitflow-maven.version>1.0-m5.1</jgitflow-maven.version>
         <slf4j.version>1.7.5</slf4j.version>
-        <jackson.version>2.9.10.8</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <junit.version>4.13.1</junit.version>
         <jacoco-maven.version>0.8.0</jacoco-maven.version>
         <surefire-report.version>3.0.0-M4</surefire-report.version>
